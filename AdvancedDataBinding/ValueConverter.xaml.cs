@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using StoredDatabase;
 
 namespace AdvancedDataBinding
 {
@@ -19,6 +20,8 @@ namespace AdvancedDataBinding
     /// </summary>
     public partial class ValueConverter : Window
     {
+        private Product product;
+
         public ValueConverter()
         {
             InitializeComponent();
@@ -26,7 +29,27 @@ namespace AdvancedDataBinding
 
         private void cmdGetProdect_Click(object sender, RoutedEventArgs e)
         {
+            if (int.TryParse(txtID.Text, out int ID))
+            {
+                try
+                {
+                    //product = App.
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+            else
+                MessageBox.Show("Invalid ID.");
+        }
 
+        private void cmdUpdateProduct_Click(object sender, RoutedEventArgs e)
+        {
+            // Make sure update has taken place.
+            FocusManager.SetFocusedElement(this, (Button)sender);
+
+            MessageBox.Show(product.UnitCost.ToString());
         }
     }
 }

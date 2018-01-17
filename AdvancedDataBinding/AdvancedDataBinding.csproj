@@ -101,5 +101,11 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\StoredDatabase\StoredDatabase.csproj">
+      <Project>{c06f8bee-0936-447b-8d55-aec70a68466d}</Project>
+      <Name>StoredDatabase</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

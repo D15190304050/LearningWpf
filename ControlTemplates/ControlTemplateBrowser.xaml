@@ -1,0 +1,19 @@
+﻿<Window x:Class="ControlTemplates.ControlTemplateBrowser"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ControlTemplates"
+        mc:Ignorable="d"
+        Title="ControlTemplateBrowser" Height="300" Width="300"
+        Loaded="Window_Loaded">
+    <Grid Name="grid" Margin="10">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="3*" />
+        </Grid.ColumnDefinitions>
+
+        <ListBox Grid.Column="0" DisplayMemberPath="Name" Name="lstTypes" SelectionChanged="lstTypes_SelectionChanged" />
+        <TextBox Grid.Column="1" Name="txtTemplate" TextWrapping="Wrap" VerticalScrollBarVisibility="Visible" FontFamily="Consolas" />
+    </Grid>
+</Window>

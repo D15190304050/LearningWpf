@@ -1,0 +1,29 @@
+﻿<Window x:Class="ControlTemplates.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ControlTemplates"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="350" Width="300">
+
+    <Window.Resources>
+        <Style TargetType="Button">
+            <Setter Property="Padding" Value="5" />
+            <Setter Property="Margin" Value="5" />
+        </Style>
+    </Window.Resources>
+
+    <Grid>
+        <StackPanel Margin="5" Button.Click="ButtonClick" Name="stackPanel">
+            <Button>SimpleWindow</Button>
+            <Button>ControlTemplateBrowser</Button>
+            <Line X2="{Binding ElementName=stackPanel, Path=ActualWidth}" Stroke="Black" StrokeThickness="2" />
+            <Button>SimpleCustomButton</Button>
+            <Button>ButtonWithAnimations</Button>
+            <Button>GradientButtonTest</Button>
+            <Button>ButtonTemplate</Button>
+            <Button>MultiPartTemplates</Button>
+        </StackPanel>
+    </Grid>
+</Window>

@@ -1,0 +1,35 @@
+﻿<Window x:Class="Drawing.RotateElement"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Drawing"
+        mc:Ignorable="d"
+        Title="RotateElement" Height="420" Width="300">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0" Margin="25" Background="LightYellow">
+            <Button Padding="5" HorizontalAlignment="Left">
+                <Button.RenderTransform>
+                    <RotateTransform Angle="35" CenterX="45" CenterY="5" />
+                </Button.RenderTransform>
+                <Button.Content>I'm rotated 35 degrees.</Button.Content>
+            </Button>
+            <Button Padding="5" HorizontalAlignment="Left">I'm not.</Button>
+        </StackPanel>
+
+        <StackPanel Grid.Row="1" Margin="25" Background="LightYellow">
+            <Button Padding="5" HorizontalAlignment="Left">
+                <Button.LayoutTransform>
+                    <RotateTransform Angle="35" CenterX="45" CenterY="5" />
+                </Button.LayoutTransform>
+                <Button.Content>I'm rotated 35 degrees.</Button.Content>
+            </Button>
+            <Button Padding="5" HorizontalAlignment="Left">I'm not</Button>
+        </StackPanel>
+    </Grid>
+</Window>

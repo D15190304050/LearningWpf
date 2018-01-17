@@ -1,0 +1,63 @@
+﻿<Window x:Class="ControlTemplates.ButtonWithAnimations"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ControlTemplates"
+        mc:Ignorable="d"
+        Title="ButtonWithAnimations" Height="300" Width="320">
+
+    <Window.Resources>
+        <ControlTemplate x:Key="ButtonTemplate" TargetType="Button">
+            <Border BorderBrush="Orange" BorderThickness="3" CornerRadius="2" Background="Red" TextBlock.Foreground="White" Name="Border">
+                <Grid>
+                    <Rectangle Name="FocusCue" Visibility="Hidden" Stroke="Black" StrokeThickness="1" StrokeDashArray="1 2" SnapsToDevicePixels="True" />
+                    <ContentPresenter RecognizesAccessKey="True" Margin="{TemplateBinding Padding}" />
+                </Grid>
+            </Border>
+
+            <ControlTemplate.Triggers>
+                <EventTrigger RoutedEvent="MouseEnter">
+                    <EventTrigger.Actions>
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <ColorAnimation Storyboard.TargetName="Border"
+                                                Storyboard.TargetProperty="Background.Color"
+                                                To="Blue" Duration="0:0:1"
+                                                AutoReverse="True" RepeatBehavior=" Forever" />
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger.Actions>
+                </EventTrigger>
+
+                <EventTrigger RoutedEvent="MouseLeave">
+                    <EventTrigger.Actions>
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <ColorAnimation Storyboard.TargetName="Border"
+                                                Storyboard.TargetProperty="Background.Color"
+                                                Duration="0:0:0.5" />
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger.Actions>
+                </EventTrigger>
+
+                <Trigger Property="IsPressed" Value="True">
+                    <Setter TargetName="Border" Property="Background" Value="Red" />
+                    <Setter TargetName="Border" Property="BorderBrush" Value="DarkKhaki" />
+                </Trigger>
+
+                <Trigger Property="IsKeyboardFocused" Value="True">
+                    <Setter TargetName="FocusCue" Property="Visibility" Value="Visible" />
+                </Trigger>
+            </ControlTemplate.Triggers>
+        </ControlTemplate>
+    </Window.Resources>
+
+    <Grid>
+        <StackPanel Margin="10">
+            <Button Margin="10" Padding="5" Template="{StaticResource ButtonTemplate}" Name="cmdOne">A Simple Button with a Custom Template</Button>
+            <Button Margin="10" Padding="5" Template="{StaticResource ButtonTemplate}" Name="cmdTwo">Another Button with A Custm Template</Button>
+        </StackPanel>
+    </Grid>
+</Window>

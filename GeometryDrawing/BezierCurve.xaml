@@ -1,0 +1,40 @@
+﻿<Window x:Class="GeometryDrawing.BezierCurve"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:GeometryDrawing"
+        mc:Ignorable="d"
+        Title="BezierCurve" Height="300" Width="300">
+    <Canvas>
+        <Path Stroke="Blue" StrokeThickness="5" Canvas.Top="20">
+            <Path.Data>
+                <PathGeometry>
+                    <PathGeometry.Figures>
+                        <PathFigure StartPoint="10,10">
+                            <BezierSegment Point1="130,30" Point2="40,140" Point3="150,150" />
+                        </PathFigure>
+                    </PathGeometry.Figures>
+                </PathGeometry>
+            </Path.Data>
+        </Path>
+
+        <Path Stroke="Green" StrokeThickness="2" StrokeDashArray="5 2" Canvas.Top="20">
+            <Path.Data>
+                <GeometryGroup>
+                    <LineGeometry StartPoint="10,10" EndPoint="130,30" />
+                    <LineGeometry StartPoint="40,140" EndPoint="150,150" />
+                </GeometryGroup>
+            </Path.Data>
+        </Path>
+
+        <Path Fill="Red" Stroke="Red" StrokeThickness="8" Canvas.Top="20">
+            <Path.Data>
+                <GeometryGroup>
+                    <EllipseGeometry Center="130,30" />
+                    <EllipseGeometry Center="40,140" />
+                </GeometryGroup>
+            </Path.Data>
+        </Path>
+    </Canvas>
+</Window>

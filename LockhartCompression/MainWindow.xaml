@@ -1,0 +1,46 @@
+﻿<Window x:Class="LockhartCompression.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:LockhartCompression"
+        mc:Ignorable="d"
+        Title="LockhartCompression" Height="500" Width="800">
+    <Grid Name="contentGrid">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" Name="row0" />
+            <RowDefinition Height="Auto" Name="row1" />
+            <RowDefinition Height="*" Name="row2" />
+            <RowDefinition Height="Auto" Name="row3" />
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0" Orientation="Horizontal">
+            <StackPanel.Resources>
+                <Style TargetType="Button">
+                    <Setter Property="Padding" Value="5" />
+                    <Setter Property="Margin" Value="5" />
+                </Style>
+            </StackPanel.Resources>
+
+            <Button Click="ExtractTo">Extract To</Button>
+            <Button Click="ClickToExtract">Click To Extract</Button>
+            <Button Click="Remove">Remove</Button>
+        </StackPanel>
+
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Grid.Column="0" Padding="5" Margin="5">Current Directory:</TextBlock>
+            
+            <TextBox Grid.Column="1" Name="currentDirectory" MaxLines="1" VerticalContentAlignment="Center" Margin="0,0,5,0" />
+        </Grid>
+
+        <ListBox Grid.Row="2" Name="contentList" Margin="5" Padding="3" ListBoxItem.MouseDoubleClick="contentList_DoubleClick">
+        </ListBox>
+
+        <TextBlock Grid.Row="3" Background="Transparent" Name="empty" MouseDown="empty_MouseDown" MinHeight="40" />
+    </Grid>
+</Window>

@@ -1,0 +1,51 @@
+﻿<Window x:Class="AnimationBasics.ImageWipe"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:AnimationBasics"
+        mc:Ignorable="d"
+        Title="ImageWipe" Height="300" Width="300">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0">
+            <Image Source="night.jpg" />
+            <Image Source="day.jpg" Name="imgDay">
+                <Image.OpacityMask>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                        <GradientStop Offset="0" Color="Transparent" x:Name="transparentStop" />
+                        <GradientStop Offset="0" Color="Black" x:Name="visibleStop" />
+                    </LinearGradientBrush>
+                </Image.OpacityMask>
+            </Image>
+        </Grid>
+
+        <Button Name="cmdStart" Grid.Row="1" Padding="5" Margin="5">
+            <Button.Content>
+                Start
+            </Button.Content>
+
+            <Button.Triggers>
+                <EventTrigger SourceName="cmdStart" RoutedEvent="Button.Click">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation
+                                Storyboard.TargetName="transparentStop"
+                                Storyboard.TargetProperty="Offset"
+                                BeginTime="0:0:0.2"
+                                From="0" To="1" Duration="0:0:1" />
+                            <DoubleAnimation
+                                Storyboard.TargetName="visibleStop"
+                                Storyboard.TargetProperty="Offset"
+                                From="0" To="1.2" Duration="0:0:1.2" />
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+            </Button.Triggers>
+        </Button>
+    </Grid>
+</Window>

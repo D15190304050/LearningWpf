@@ -1,0 +1,34 @@
+﻿<Window x:Class="GeometryDrawing.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:GeometryDrawing"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="350" Width="300">
+ 
+    
+    <Window.Resources>
+        <Style TargetType="Button">
+            <Setter Property="FontSize" Value="12" />
+            <Setter Property="Padding" Value="3" />
+            <Setter Property="Margin" Value="2" />
+        </Style>
+    </Window.Resources>
+    
+    <Grid>
+        <StackPanel Button.Click="CreateWindow_Click">
+            <Button>GroupedShapes</Button>
+            <Button>ReusingGeometry</Button>
+            <Button>CombinedShapes</Button>
+            <Button>NoSymbol</Button>
+            <Button>SimpleArc</Button>
+            <Button>BezierCurve</Button>
+            <Button>MiniLanguage</Button>
+            <Button>Clipping</Button>
+            <Button>ClippingWithViewbox</Button>
+            <Button>ClipArt</Button>
+            <Button>Drawings</Button>
+        </StackPanel>
+    </Grid>
+</Window>

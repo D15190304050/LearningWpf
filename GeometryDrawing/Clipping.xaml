@@ -1,0 +1,27 @@
+﻿<Window x:Class="GeometryDrawing.Clipping"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:GeometryDrawing"
+        mc:Ignorable="d"
+        Title="Clipping" Height="350" Width="700">
+
+    <Window.Resources>
+        <GeometryGroup x:Key="clipGeometry" FillRule="Nonzero">
+            <EllipseGeometry RadiusX="75" RadiusY="50" Center="100,150" />
+            <EllipseGeometry RadiusX="100" RadiusY="25" Center="200,150" />
+            <EllipseGeometry RadiusX="75" RadiusY="130" Center="140,140" />
+        </GeometryGroup>
+    </Window.Resources>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+
+        <Button Grid.Column="0" Clip="{StaticResource clipGeometry}">A Button</Button>
+        <Image Grid.Column="1" Clip="{StaticResource clipGeometry}" Stretch="None" Source="Creek.jpg" />
+    </Grid>
+</Window>

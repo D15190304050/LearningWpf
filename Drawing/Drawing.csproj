@@ -1,0 +1,278 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{552CC653-D152-439D-9C4B-97BB9531A28B}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Drawing</RootNamespace>
+    <AssemblyName>Drawing</AssemblyName>
+    <TargetFrameworkVersion>v4.7</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="OxyPlot, Version=1.0.0.0, Culture=neutral, PublicKeyToken=638079a8f0bd61e9, processorArchitecture=MSIL">
+      <HintPath>..\packages\OxyPlot.Core.1.0.0\lib\net45\OxyPlot.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="OxyPlot.Wpf, Version=1.0.0.0, Culture=neutral, PublicKeyToken=75e952ba404cdbb0, processorArchitecture=MSIL">
+      <HintPath>..\packages\OxyPlot.Wpf.1.0.0\lib\net45\OxyPlot.Wpf.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="DrawingShapes\DashedLines.xaml.cs">
+      <DependentUpon>DashedLines.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DrawingShapes\FillModes.xaml.cs">
+      <DependentUpon>FillModes.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DrawingBrushes\Gradients.xaml.cs">
+      <DependentUpon>Gradients.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DrawingBrushes\GradientText.xaml.cs">
+      <DependentUpon>GradientText.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DrawingShapes\InsideOutsideFill.xaml.cs">
+      <DependentUpon>InsideOutsideFill.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DrawingShapes\LineCaps.xaml.cs">
+      <DependentUpon>LineCaps.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DrawingShapes\LineJoins.xaml.cs">
+      <DependentUpon>LineJoins.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DrawingShapes\PixelSnapping.xaml.cs">
+      <DependentUpon>PixelSnapping.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DrawingShapes\PolylinesAndPolygons.xaml.cs">
+      <DependentUpon>PolylinesAndPolygons.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DrawingBrushes\RadialGradient.xaml.cs">
+      <DependentUpon>RadialGradient.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DrawingShapes\RoundedRectangles.xaml.cs">
+      <DependentUpon>RoundedRectangles.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DrawingShapes\Shapes.xaml.cs">
+      <DependentUpon>Shapes.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DrawingShapes\ViewboxResize.xaml.cs">
+      <DependentUpon>ViewboxResize.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DrawingBrushes\TileTypes.xaml.cs">
+      <DependentUpon>TileTypes.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DrawingBrushes\TileFlip.xaml.cs">
+      <DependentUpon>TileFlip.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DrawingBrushes\VisualBrush.xaml.cs">
+      <DependentUpon>VisualBrush.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DrawingRotations\RotateShape.xaml.cs">
+      <DependentUpon>RotateShape.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DrawingRotations\RotateElement.xaml.cs">
+      <DependentUpon>RotateElement.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DrawingTransparency\Transparency.xaml.cs">
+      <DependentUpon>Transparency.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Reflection.xaml.cs">
+      <DependentUpon>Reflection.xaml</DependentUpon>
+    </Compile>
+    <Page Include="DrawingShapes\DashedLines.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DrawingShapes\FillModes.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DrawingBrushes\Gradients.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DrawingBrushes\GradientText.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DrawingShapes\InsideOutsideFill.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DrawingShapes\LineCaps.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DrawingShapes\LineJoins.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DrawingBrushes\ImageBrushes.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DrawingBrushes\ImageBrushes.xaml.cs">
+      <DependentUpon>ImageBrushes.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="DrawingShapes\PixelSnapping.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DrawingShapes\PolylinesAndPolygons.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DrawingBrushes\RadialGradient.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DrawingShapes\RoundedRectangles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DrawingShapes\Shapes.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DrawingShapes\ViewboxResize.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DrawingBrushes\TileTypes.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DrawingBrushes\TileFlip.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DrawingBrushes\VisualBrush.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DrawingRotations\RotateShape.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DrawingRotations\RotateElement.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DrawingTransparency\Transparency.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DrawingTransparency\OpacityMask.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Reflection.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="DrawingTransparency\OpacityMask.xaml.cs">
+      <DependentUpon>OpacityMask.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <AppDesigner Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\celestial.jpg" />
+    <Resource Include="Images\grandpiano.jpg" />
+    <Resource Include="Images\happyface.jpg" />
+    <Resource Include="Images\logo.gif" />
+    <Resource Include="Images\tile.jpg" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

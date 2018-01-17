@@ -1,0 +1,34 @@
+﻿<Window x:Class="CustomElements.CustomControlsClient.CustomDrawnElementChrome"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CustomElements.CustomControlsClient"
+        mc:Ignorable="d"
+        xmlns:lib="clr-namespace:CustomElements.CustomControls"
+        Title="CustomDrawnElementChrome" Height="300" Width="300">
+
+    <Window.Resources>
+        <ControlTemplate x:Key="ButtonWithCustomChrome">
+            <lib:CustomDrawnDecorator BackgroundColor="LightGreen">
+                <ContentPresenter Margin="{TemplateBinding Padding}"
+                                  HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
+                                  VerticalAlignment="{TemplateBinding VerticalAlignment}"
+                                  ContentTemplate="{TemplateBinding ContentControl.ContentTemplate}"
+                                  Content="{TemplateBinding ContentControl.Content}"
+                                  RecognizesAccessKey="True" />
+            </lib:CustomDrawnDecorator>
+        </ControlTemplate>
+
+        <Style TargetType="Button">
+            <Setter Property="Margin" Value="3" />
+            <Setter Property="Padding" Value="10" />
+        </Style>
+    </Window.Resources>
+
+    <StackPanel>
+        <Button Template="{StaticResource ButtonWithCustomChrome}">Test Custom</Button>
+        <Button>Test Normal</Button>
+        <Button Template="{StaticResource ButtonWithCustomChrome}">Test Custom</Button>
+    </StackPanel>
+</Window>

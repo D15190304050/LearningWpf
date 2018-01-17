@@ -1,0 +1,57 @@
+﻿<Window x:Class="EffectsAndVisuals.DropShadowEffects"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:EffectsAndVisuals"
+        mc:Ignorable="d"
+        Title="DropShadowEffects" Height="300" Width="370">
+    <Grid>
+        <StackPanel>
+            <TextBlock FontSize="20" Margin="5">
+                <TextBlock.Effect>
+                    <DropShadowEffect/>
+                </TextBlock.Effect>
+                <TextBlock.Text>
+                    Basic dropshadow
+                </TextBlock.Text>
+            </TextBlock>
+
+            <TextBlock FontSize="20" Margin="5">
+                <TextBlock.Effect>
+                    <DropShadowEffect Color="SlateBlue" />
+                </TextBlock.Effect>
+                <TextBlock.Text>
+                    Light blue dropshadow
+                </TextBlock.Text>
+            </TextBlock>
+
+            <TextBlock FontSize="20" Margin="5" Foreground="White">
+                <TextBlock.Effect>
+                    <DropShadowEffect BlurRadius="5" />
+                </TextBlock.Effect>
+                <TextBlock.Text>
+                    Blurred dropshadow with white text
+                </TextBlock.Text>
+            </TextBlock>
+
+            <TextBlock FontSize="20" Margin="5" Foreground="Magenta">
+                <TextBlock.Effect>
+                    <DropShadowEffect ShadowDepth="0" />
+                </TextBlock.Effect>
+                <TextBlock.Text>
+                    Close dropshadow
+                </TextBlock.Text>
+            </TextBlock>
+
+            <TextBlock FontSize="20" Margin="5" Foreground="LimeGreen">
+                <TextBlock.Effect>
+                    <DropShadowEffect ShadowDepth="25" />
+                </TextBlock.Effect>
+                <TextBlock.Text>
+                    Distant dropshadow
+                </TextBlock.Text>
+            </TextBlock>
+        </StackPanel>
+    </Grid>
+</Window>

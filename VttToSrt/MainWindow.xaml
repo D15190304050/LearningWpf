@@ -1,0 +1,41 @@
+﻿<Window x:Class="VttToSrt.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:VttToSrt"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="300" Width="450">
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Row="0">
+            Please enter the path of the directory which stores " *.vtt " files
+        </TextBlock>
+
+        <TextBox Grid.Row="1" Name="txtPath" Padding="5" Margin="5" />
+
+        <Button Grid.Row="2" Name="cmdClear" Click="cmdClear_Click"
+                HorizontalAlignment="Right" Padding="5" Margin="5">
+            Clear All Text
+        </Button>
+
+        <Grid Grid.Row="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+
+            <Button Grid.Column="0" Name="cmdTransit" HorizontalAlignment="Center"
+                    Padding="5" Margin="5" Click="cmdTransit_Click">
+                Transit
+            </Button>
+        </Grid>
+    </Grid>
+</Window>

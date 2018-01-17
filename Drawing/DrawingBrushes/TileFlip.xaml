@@ -1,0 +1,53 @@
+﻿<Window x:Class="Drawing.TileFlip"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Drawing"
+        mc:Ignorable="d"
+        Title="TileFlip" Height="350" Width="500">
+    <Grid>
+        <UniformGrid Rows="2" Columns="2">
+            <Rectangle Stroke="Black">
+                <Rectangle.Fill>
+                    <ImageBrush ImageSource="../Images/tile.jpg" TileMode="Tile" ViewportUnits="Absolute" Viewport="0,0 37,37" />
+                </Rectangle.Fill>
+            </Rectangle>
+
+            <Rectangle Stroke="Black">
+                <Rectangle.Fill>
+                    <ImageBrush ImageSource="../Images/tile.jpg" TileMode="FlipX" ViewportUnits="Absolute" Viewport="0,0 37,37" />
+                </Rectangle.Fill>
+            </Rectangle>
+
+            <Rectangle Stroke="Black">
+                <Rectangle.Fill>
+                    <ImageBrush ImageSource="../Images/tile.jpg" TileMode="FlipY" ViewportUnits="Absolute" Viewport="0,0 37,37" />
+                </Rectangle.Fill>
+            </Rectangle>
+
+            <Rectangle Stroke="Black">
+                <Rectangle.Fill>
+                    <ImageBrush ImageSource="../Images/tile.jpg" TileMode="FlipXY" ViewportUnits="Absolute" Viewport="0,0 37,37" />
+                </Rectangle.Fill>
+            </Rectangle>
+        </UniformGrid>
+
+        <UniformGrid Rows="2" Columns="2">
+            <UniformGrid.Resources>
+                <Style TargetType="TextBlock">
+                    <Setter Property="HorizontalAlignment" Value="Center" />
+                    <Setter Property="VerticalAlignment" Value="Bottom" />
+                    <Setter Property="FontSize" Value="25" />
+                    <Setter Property="FontWeight" Value="Bold" />
+                    <Setter Property="Margin" Value="3" />
+                </Style>
+            </UniformGrid.Resources>
+
+            <TextBlock>Tile</TextBlock>
+            <TextBlock>FlipX</TextBlock>
+            <TextBlock>FlipY</TextBlock>
+            <TextBlock>FlipXY</TextBlock>
+        </UniformGrid>
+    </Grid>
+</Window>

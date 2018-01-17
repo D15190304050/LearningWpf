@@ -1,0 +1,36 @@
+﻿<Window x:Class="Drawing.Reflection"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Drawing"
+        mc:Ignorable="d"
+        Title="Reflection" Height="200" Width="500">
+
+    <Window.Background>
+        <SolidColorBrush Color="LightGray" />
+    </Window.Background>
+
+    <Grid Margin="10" Grid.IsSharedSizeScope="True" VerticalAlignment="Center">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" SharedSizeGroup="Row" />
+            <RowDefinition Height="Auto" SharedSizeGroup="Row" />
+        </Grid.RowDefinitions>
+
+        <TextBox Grid.Row="0" Name="txt" FontSize="30">Here is some reflected text</TextBox>
+        <Rectangle Grid.Row="1" RenderTransformOrigin="1,0.5">
+            <Rectangle.Fill>
+                <VisualBrush Visual="{Binding ElementName=txt}" />
+            </Rectangle.Fill>
+            <Rectangle.OpacityMask>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                    <GradientStop Offset="0.3" Color="Transparent" />
+                    <GradientStop Offset="1" Color="#44000000" />
+                </LinearGradientBrush>
+            </Rectangle.OpacityMask>
+            <Rectangle.RenderTransform>
+                <ScaleTransform ScaleY="-1" />
+            </Rectangle.RenderTransform>
+        </Rectangle>
+    </Grid>
+</Window>

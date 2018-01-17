@@ -1,0 +1,54 @@
+﻿<Window x:Class="Drawing.LineCaps"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Drawing"
+        mc:Ignorable="d"
+        Title="LineCaps" Height="300" Width="350">
+
+    <Window.Resources>
+        <Style TargetType="Polyline">
+            <Setter Property="Stroke" Value="Blue" />
+            <Setter Property="StrokeThickness" Value="15" />
+            <Setter Property="SnapsToDevicePixels" Value="True" />
+        </Style>
+    </Window.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
+
+        <Canvas Grid.Row="0" Grid.Column="0">
+            <Polyline Canvas.Top="20" StrokeEndLineCap="Flat"
+                  Points="10,10 30,0 50,20 90,10 200,10"/>
+        </Canvas>
+        <TextBlock Grid.Row="0" Grid.Column="1" VerticalAlignment="Center">Flat Line Cap</TextBlock>
+
+        <Canvas Grid.Row="1" Grid.Column="0">
+            <Polyline Canvas.Top="20" StrokeEndLineCap="Square"
+                  Points="10,10 30,0 50,20 90,10 200,10"/>
+        </Canvas>
+        <TextBlock Grid.Row="1" Grid.Column="1" VerticalAlignment="Center">Square Line Cap</TextBlock>
+
+        <Canvas Grid.Row="2" Grid.Column="0">
+            <Polyline Canvas.Top="20" StrokeEndLineCap="Round"
+                  Points="10,10 30,0 50,20 90,10 200,10"/>
+        </Canvas>
+        <TextBlock Grid.Row="2" Grid.Column="1" VerticalAlignment="Center">Round Line Cap</TextBlock>
+
+        <Canvas Grid.Row="3" Grid.Column="0">
+            <Polyline Canvas.Top="20" StrokeEndLineCap="Triangle"
+                  Points="10,10 30,0 50,20 90,10 200,10"/>
+        </Canvas>
+        <TextBlock Grid.Row="3" Grid.Column="1" VerticalAlignment="Center">Triangle Line Cap</TextBlock>
+    </Grid>
+</Window>

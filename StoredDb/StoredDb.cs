@@ -8,9 +8,9 @@ using System.Data.SqlClient;
 using System.ComponentModel;
 using System.Collections.ObjectModel;
 
-namespace StoredDb
+namespace StoreDatabase
 {
-    public class StoredDb
+    public class StoreDb
     {
         public Product GetProduct(int ID)
         {
@@ -34,7 +34,7 @@ namespace StoredDb
             foreach (DataRow productRow in ds.Tables["Products"].Rows)
             {
                 products.Add(new Product((string)productRow["ModelNumber"],
-                                         (string)productRow["ProductName"],
+                                         (string)productRow["ModelName"],
                                          (decimal)productRow["UnitCost"],
                                          (string)productRow["Description"],
                                          (int)productRow["CategoryID"],

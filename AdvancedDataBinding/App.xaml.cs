@@ -5,6 +5,7 @@ using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using StoreDatabase;
 
 namespace AdvancedDataBinding
 {
@@ -13,6 +14,13 @@ namespace AdvancedDataBinding
     /// </summary>
     public partial class App : Application
     {
+        private static StoreDb storeDb = new StoreDb();
 
+        public static StoreDb StoreDb
+        {
+            get { return storeDb; }
+        }
+
+        //public static 
     }
 }

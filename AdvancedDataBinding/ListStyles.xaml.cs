@@ -10,19 +10,27 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
+using StoreDatabase;
 
-namespace StoreDatabase
+namespace AdvancedDataBinding
 {
     /// <summary>
-    /// MainWindow.xaml 的交互逻辑
+    /// ListStyles.xaml 的交互逻辑
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class ListStyles : Window
     {
-        public MainWindow()
+        private ICollection<Product> products;
+
+        public ListStyles()
         {
             InitializeComponent();
+        }
+
+        private void cmdGetProducts_Click(object sender, RoutedEventArgs e)
+        {
+            products = App.StoreDb.GetProducts();
+            lstProducts.ItemsSource = products;
         }
     }
 }

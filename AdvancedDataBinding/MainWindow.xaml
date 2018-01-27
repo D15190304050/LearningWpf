@@ -17,6 +17,8 @@
     <Grid>
         <StackPanel Button.Click="ButtonClick">
             <Button>ValueConverter</Button>
+            <Button>MoreValueConverter</Button>
+            <Button>ListStyles</Button>
         </StackPanel>
     </Grid>
 </Window>

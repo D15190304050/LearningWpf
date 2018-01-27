@@ -8,11 +8,11 @@ using System.Data.SqlClient;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 
-namespace StoredDatabase
+namespace StoreDatabase
 {
     public class StoredDb
     {
-        private readonly string connectionString = StoredDatabase.Properties.Settings.Default.Store;
+        private readonly string connectionString = StoreDatabase.Properties.Settings.Default.Store;
 
         public Product GetProduct(int ID)
         {

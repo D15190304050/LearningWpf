@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace StoredDatabase.Properties
+namespace StoreDatabase.Properties
 {
 
 

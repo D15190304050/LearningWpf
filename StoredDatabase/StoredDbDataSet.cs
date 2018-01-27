@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 using System.Data;
 using System.Data.SqlClient;
 
-namespace StoredDatabase
+namespace StoreDatabase
 {
     public class StoredDbDataSet
     {
-        private readonly string connectionString = StoredDatabase.Properties.Settings.Default.Store;
+        private readonly string connectionString = StoreDatabase.Properties.Settings.Default.Store;
         //private const string GetProducts = "GetProducts";
         private const string Products = "Products";
         private const string Categories = "Categories";

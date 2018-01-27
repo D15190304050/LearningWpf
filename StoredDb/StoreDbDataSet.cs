@@ -7,7 +7,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.IO;
 
-namespace StoredDb
+namespace StoreDatabase
 {
     public class StoreDbDataSet
     {

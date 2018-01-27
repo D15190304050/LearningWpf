@@ -11,7 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using StoredDatabase;
+using StoreDatabase;
 
 namespace AdvancedDataBinding
 {
@@ -33,7 +33,8 @@ namespace AdvancedDataBinding
             {
                 try
                 {
-                    //product = App.
+                    product = App.StoreDb.GetProduct(ID);
+                    gridProductDetails.DataContext = product;
                 }
                 catch (Exception ex)
                 {

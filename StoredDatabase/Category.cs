@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.ComponentModel;
 using System.Collections.ObjectModel;
 
-namespace StoredDatabase
+namespace StoreDatabase
 {
     public class Category : INotifyPropertyChanged
     {

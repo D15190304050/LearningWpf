@@ -32,7 +32,7 @@
             </StackPanel>
         </Grid>
 
-        <GridSplitter Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" ResizeBehavior="PreviousAndCurrent" Height="5" />
+        <GridSplitter Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Center" Height="5" />
         
         <!-- The first border applies the default background color (when no object is bound). -->
         <Border Grid.Row="2" Background="LightSteelBlue" Margin="7">

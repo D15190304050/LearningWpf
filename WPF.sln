@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27130.2020
+VisualStudioVersion = 15.0.27130.2026
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPF", "WPF\WPF.csproj", "{257701F6-771D-4B0B-B977-03CBFDE8D48D}"
 EndProject
@@ -27,10 +27,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Calculator", "Calculator\Ca
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdvancedAnimations", "AdvancedAnimations\AdvancedAnimations.csproj", "{9D985B99-BE38-45C1-9D72-BAE44B04181B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MedicineRecognition", "MedicineRecognition\MedicineRecognition.csproj", "{4E6B2275-4884-4C8E-B106-714F8E95AFE8}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlotSharp", "PlotSharp\PlotSharp.csproj", "{1B26B1CB-B7E0-422C-82A9-66D9459FE35D}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ControlTemplates", "ControlTemplates\ControlTemplates.csproj", "{CC3BE228-5FE5-4540-9E52-69D8DBA8DE2B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomElements", "CustomElements\CustomElements.csproj", "{B2630A15-A839-4FC2-8094-15D31F69B03E}"
@@ -42,6 +38,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StoredDatabase", "StoredDatabase\StoredDatabase.csproj", "{C06F8BEE-0936-447B-8D55-AEC70A68466D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StoredDb", "StoredDb\StoredDb.csproj", "{A9CE01BD-0DD1-48F9-889B-646720677612}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfGames", "WpfGames\WpfGames.csproj", "{BF0AECBF-68F2-49A7-95DB-DD9129906092}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -97,14 +95,6 @@ Global
 		{9D985B99-BE38-45C1-9D72-BAE44B04181B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9D985B99-BE38-45C1-9D72-BAE44B04181B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9D985B99-BE38-45C1-9D72-BAE44B04181B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{4E6B2275-4884-4C8E-B106-714F8E95AFE8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4E6B2275-4884-4C8E-B106-714F8E95AFE8}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4E6B2275-4884-4C8E-B106-714F8E95AFE8}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4E6B2275-4884-4C8E-B106-714F8E95AFE8}.Release|Any CPU.Build.0 = Release|Any CPU
-		{1B26B1CB-B7E0-422C-82A9-66D9459FE35D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1B26B1CB-B7E0-422C-82A9-66D9459FE35D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1B26B1CB-B7E0-422C-82A9-66D9459FE35D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1B26B1CB-B7E0-422C-82A9-66D9459FE35D}.Release|Any CPU.Build.0 = Release|Any CPU
 		{CC3BE228-5FE5-4540-9E52-69D8DBA8DE2B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{CC3BE228-5FE5-4540-9E52-69D8DBA8DE2B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CC3BE228-5FE5-4540-9E52-69D8DBA8DE2B}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -129,6 +119,10 @@ Global
 		{A9CE01BD-0DD1-48F9-889B-646720677612}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A9CE01BD-0DD1-48F9-889B-646720677612}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A9CE01BD-0DD1-48F9-889B-646720677612}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BF0AECBF-68F2-49A7-95DB-DD9129906092}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BF0AECBF-68F2-49A7-95DB-DD9129906092}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BF0AECBF-68F2-49A7-95DB-DD9129906092}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BF0AECBF-68F2-49A7-95DB-DD9129906092}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

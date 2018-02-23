@@ -63,6 +63,9 @@
     </Compile>
     <Compile Include="PriceConverter.cs" />
     <Compile Include="PriceToBackgroundConverter.cs" />
+    <Compile Include="RadioButtonListStyle.xaml.cs">
+      <DependentUpon>RadioButtonListStyle.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ValueConverter.xaml.cs">
       <DependentUpon>ValueConverter.xaml</DependentUpon>
     </Compile>
@@ -83,6 +86,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="MoreValueConverter.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="RadioButtonListStyle.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

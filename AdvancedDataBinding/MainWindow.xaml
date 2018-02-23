@@ -19,6 +19,7 @@
             <Button>ValueConverter</Button>
             <Button>MoreValueConverter</Button>
             <Button>ListStyles</Button>
+            <Button>RadioButtonListStyle</Button>
         </StackPanel>
     </Grid>
 </Window>

@@ -39,6 +39,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StoredDatabase", "StoredDat
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StoredDb", "StoredDb\StoredDb.csproj", "{A9CE01BD-0DD1-48F9-889B-646720677612}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MusicPlayer", "MusicPlayer\MusicPlayer.csproj", "{6C345D11-7304-4B53-8F5A-FC1F1012F338}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -117,6 +119,10 @@ Global
 		{A9CE01BD-0DD1-48F9-889B-646720677612}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A9CE01BD-0DD1-48F9-889B-646720677612}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A9CE01BD-0DD1-48F9-889B-646720677612}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6C345D11-7304-4B53-8F5A-FC1F1012F338}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6C345D11-7304-4B53-8F5A-FC1F1012F338}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6C345D11-7304-4B53-8F5A-FC1F1012F338}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6C345D11-7304-4B53-8F5A-FC1F1012F338}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

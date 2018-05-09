@@ -1,0 +1,34 @@
+﻿<Window x:Class="MusicPlayer.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MusicPlayer"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="600" Width="400"
+        Loaded="Window_Loaded"
+        >
+    <Grid Margin="10" Name="entireGrid">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <TextBlock>Album</TextBlock>
+
+        <ListView Name="lstSongs" Grid.Row="1">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Song" DisplayMemberBinding="{Binding Path=FileName}" Width="{Binding ElementName=entireGrid, Path=ActualWidth}" />
+                    <GridViewColumn Header="Time" DisplayMemberBinding="{Binding Path=Time}" Width="Auto" />
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+        <StackPanel Grid.Row="2" Orientation="Horizontal">
+            <Button Name="cmdAddMusic" Click="cmdAddMusic_Click" Padding="5" Margin="0,0,10,0">Add</Button>
+            <Button Name="cmdPlay" Click="cmdPlay_Click" Padding="5">Play</Button>
+        </StackPanel>
+    </Grid>
+</Window>

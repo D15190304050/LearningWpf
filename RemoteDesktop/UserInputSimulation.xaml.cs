@@ -65,6 +65,10 @@ namespace RemoteDesktop
 
             UserMouseEvent.SetCursorPos(2560, 1440);
             UserMouseEvent.MouseRightClick(2560, 1440, 0);
+
+            // Show some thing when this window is not active.
+            // This test shows that the server part can still work when dealing with client commands.
+            txtMouseEvents.AppendText("Append some text when this window is not active.");
         }
     }
 }

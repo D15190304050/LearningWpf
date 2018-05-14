@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:RemoteDesktop"
         mc:Ignorable="d"
-        Title="MainWindow" Height="300" Width="400">
+        Title="MainWindow" Height="500" Width="300">
 
     <Window.Resources>
         <Style TargetType="Button">
@@ -19,6 +19,8 @@
             <Button>ScreenCaptureSender</Button>
             <Button>ScreenCaptureReceiver</Button>
             <Button>UserInputSimulation</Button>
+            <Button>UserCommandSender</Button>
+            <Button>UserCommandExecutor</Button>
         </StackPanel>
     </Grid>
 </Window>

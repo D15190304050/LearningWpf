@@ -65,9 +65,16 @@
     <Compile Include="ScreenCaptureSender.xaml.cs">
       <DependentUpon>ScreenCaptureSender.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserCommandExecutor.xaml.cs">
+      <DependentUpon>UserCommandExecutor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserCommandSender.xaml.cs">
+      <DependentUpon>UserCommandSender.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserInputSimulation.xaml.cs">
       <DependentUpon>UserInputSimulation.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserMouseCommand.cs" />
     <Compile Include="UserMouseEvent.cs" />
     <Compile Include="Win32Api.cs" />
     <Page Include="MainWindow.xaml">
@@ -87,6 +94,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ScreenCaptureSender.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserCommandExecutor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserCommandSender.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

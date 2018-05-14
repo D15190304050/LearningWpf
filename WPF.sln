@@ -41,6 +41,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StoredDb", "StoredDb\Stored
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MusicPlayer", "MusicPlayer\MusicPlayer.csproj", "{6C345D11-7304-4B53-8F5A-FC1F1012F338}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RemoteDesktop", "RemoteDesktop\RemoteDesktop.csproj", "{A475EAB9-C916-47CA-96A0-EFA762144FC5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -123,6 +125,10 @@ Global
 		{6C345D11-7304-4B53-8F5A-FC1F1012F338}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6C345D11-7304-4B53-8F5A-FC1F1012F338}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6C345D11-7304-4B53-8F5A-FC1F1012F338}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A475EAB9-C916-47CA-96A0-EFA762144FC5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A475EAB9-C916-47CA-96A0-EFA762144FC5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A475EAB9-C916-47CA-96A0-EFA762144FC5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A475EAB9-C916-47CA-96A0-EFA762144FC5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

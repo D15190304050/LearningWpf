@@ -1,0 +1,23 @@
+﻿<Window x:Class="RemoteDesktop.ScreenCaptureReceiver"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:RemoteDesktop"
+        mc:Ignorable="d"
+        xmlns:WinFormHost="clr-namespace:System.Windows.Forms.Integration;assembly=WindowsFormsIntegration"
+        xmlns:WinFormControls="clr-namespace:System.Windows.Forms;assembly=System.Windows.Forms"
+        Title="ScreenCaptureReceiver" Height="450" Width="800"
+        Closing="Window_Closing">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <WindowsFormsHost Name="wfh">
+            <WinFormControls:PictureBox />
+        </WindowsFormsHost>
+        <Button Grid.Row="1" Name="cmdScreenCapture" Click="cmdScreenCapture_Click">Start</Button>
+    </Grid>
+</Window>

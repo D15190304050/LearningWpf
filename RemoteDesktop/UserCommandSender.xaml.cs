@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Net;
 using System.Net.Sockets;
+using System.Windows.Forms;
 
 namespace RemoteDesktop
 {
@@ -29,13 +30,13 @@ namespace RemoteDesktop
         }
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            clientSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-            clientSocket.Connect(IPAddress.Parse("172.21.228.124"), 16845);
+            //clientSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+            //clientSocket.Connect(IPAddress.Parse("172.21.228.124"), 16845);
         }
 
         private void cmdSendMouseCommand_Click(object sender, RoutedEventArgs e)
         {
-
+            
         }
     }
 }

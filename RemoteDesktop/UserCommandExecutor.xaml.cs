@@ -11,6 +11,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Net;
+using System.Net.Sockets;
 
 namespace RemoteDesktop
 {
@@ -19,9 +21,31 @@ namespace RemoteDesktop
     /// </summary>
     public partial class UserCommandExecutor : Window
     {
+        private const int ReceiveBufferSize = 1024;
+
+        private Socket clientSocket;
+        private byte[] receiveBuffer;
+
         public UserCommandExecutor()
         {
             InitializeComponent();
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            IPEndPoint ip = new IPEndPoint(IPAddress.Parse("172.21.228.124"), 16845);
+            Socket serverSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+            serverSocket.Bind(ip);
+            serverSocket.Listen(5);
+
+            clientSocket = serverSocket.Accept();
+            receiveBuffer = new byte[ReceiveBufferSize];
+        }
+
+        private void ExecuteCommand()
+        {
+            int receivedLength = clientSocket.Receive(receiveBuffer);
+            //clientSocket
         }
     }
 }

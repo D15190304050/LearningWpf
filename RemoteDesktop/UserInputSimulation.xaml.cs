@@ -12,6 +12,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Windows.Forms;
 
 namespace RemoteDesktop
 {
@@ -40,7 +41,7 @@ namespace RemoteDesktop
             //mouseHook.MouseUpEvent += MouseUpEventHandler;
         }
 
-        //按下鼠标键触发的事件
+        // 按下鼠标键触发的事件
         private void MouseDownEventHandler(object sender, System.Windows.Forms.MouseEventArgs e)
         {
             txtMouseEvents.AppendText("按下了左键\n");
@@ -56,7 +57,7 @@ namespace RemoteDesktop
             //mouseHook.UnHook();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void cmdMouseRightClick_Click(object sender, RoutedEventArgs e)
         {
             UserMouseEvent.SetCursorPos(1920, 1080);
             UserMouseEvent.MouseRightClick(1920, 1080, 0);
@@ -69,6 +70,18 @@ namespace RemoteDesktop
             // Show some thing when this window is not active.
             // This test shows that the server part can still work when dealing with client commands.
             txtMouseEvents.AppendText("Append some text when this window is not active.");
+        }
+
+        private void cmdKeyboardInput_Click(object sender, RoutedEventArgs e)
+        {
+            UserMouseEvent.SetCursorPos(1920, 1080);
+            UserMouseEvent.MouseLeftClick(1920, 1080, 0);
+
+            // Send keys to current active window.
+            SendKeys.SendWait("ABC");
+            SendKeys.SendWait("{ENTER}");
+            SendKeys.SendWait("BiuBiuBiu");
+            SendKeys.SendWait("{ENTER}");
         }
     }
 }

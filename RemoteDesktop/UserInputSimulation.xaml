@@ -14,9 +14,11 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
         <TextBox Grid.Row="0" Name="txtMouseEvents" Margin="10" />
-        <Button Grid.Row="1" Padding="5" Click="Button_Click">Click</Button>
+        <Button Grid.Row="1" Padding="5" Click="cmdMouseRightClick_Click">Click</Button>
+        <Button Grid.Row="2" Padding="5" Click="cmdKeyboardInput_Click">Keyboard Input</Button>
     </Grid>
 </Window>

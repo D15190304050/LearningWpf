@@ -58,6 +58,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="CommandType.cs" />
+    <Compile Include="MouseEventFlag.cs" />
     <Compile Include="MouseHook.cs" />
     <Compile Include="ScreenCaptureReceiver.xaml.cs">
       <DependentUpon>ScreenCaptureReceiver.xaml</DependentUpon>
@@ -65,6 +67,7 @@
     <Compile Include="ScreenCaptureSender.xaml.cs">
       <DependentUpon>ScreenCaptureSender.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserCommandBase.cs" />
     <Compile Include="UserCommandExecutor.xaml.cs">
       <DependentUpon>UserCommandExecutor.xaml</DependentUpon>
     </Compile>

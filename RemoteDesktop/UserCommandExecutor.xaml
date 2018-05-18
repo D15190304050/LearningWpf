@@ -5,10 +5,15 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:RemoteDesktop"
         mc:Ignorable="d"
-        Title="UserCommandExecutor" Height="450" Width="800"
-        Loaded="Window_Loaded"
+        Title="UserCommandExecutor" Height="450" Width="400"
         >
     <Grid Margin="10">
-        <TextBox Name="txtCommandExecutor" />
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <TextBox Name="txtCommandExecutor" Grid.Row="0" />
+        <Button Name="cmdStart" Click="cmdStart_Click" Grid.Row="1" Padding="5">Start</Button>
     </Grid>
 </Window>

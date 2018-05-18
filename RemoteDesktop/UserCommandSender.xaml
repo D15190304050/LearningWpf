@@ -7,6 +7,7 @@
         mc:Ignorable="d"
         Title="UserCommandSender" Height="450" Width="400"
         Loaded="Window_Loaded"
+        Closing="Window_Closing"
         >
 
     <Window.Resources>
@@ -22,11 +23,16 @@
             <Style TargetType="TextBlock">
                 <Setter Property="FontSize" Value="18" />
                 <Setter Property="FontFamily" Value="Cambria Math" />
-                <Setter Property="Margin" Value="0,10,10,0" />
+                <Setter Property="Margin" Value="0,10,0,0" />
             </Style>
 
             <Style TargetType="TextBlock" x:Key="ComboxMargin">
                 <Setter Property="Margin" Value="0" />
+            </Style>
+
+            <Style TargetType="Button">
+                <Setter Property="HorizontalAlignment" Value="Right" />
+                <Setter Property="Padding" Value="5" />
             </Style>
         </Grid.Resources>
 
@@ -34,6 +40,8 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
@@ -47,15 +55,19 @@
         <TextBlock Grid.Row="1" Grid.Column="0">Mouse Y</TextBlock>
         <TextBox Name="txtMouseY" Grid.Row="1" Grid.Column="1" />
 
-        <ComboBox Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2">
+        <ComboBox Name="cbMouseCommand" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Margin="0,10,0,10">
             <TextBlock Style="{StaticResource ResourceKey=ComboxMargin}">Move Mouse</TextBlock>
             <TextBlock Style="{StaticResource ResourceKey=ComboxMargin}">Mouse Left Click</TextBlock>
             <TextBlock Style="{StaticResource ResourceKey=ComboxMargin}">Mouse Right Click</TextBlock>
-            <TextBlock Style="{StaticResource ResourceKey=ComboxMargin}">Mouse Double Click</TextBlock>
         </ComboBox>
 
-        <Button Grid.Row="3" Grid.Column="1" HorizontalAlignment="Right" Padding="5" Click="cmdSendMouseCommand_Click" Margin="0,10,0,0">
+        <Button Grid.Row="3" Grid.Column="1" Click="cmdSendMouseCommand_Click">
             Send And Execute
         </Button>
+
+        <TextBlock Grid.Row="4" Grid.Column="0">Keys to Send</TextBlock>
+        <TextBox Name="txtKeysToSend" Grid.Row="4" Grid.Column="1" Style="{x:Null}" MaxLines="10" TextWrapping="Wrap" AcceptsReturn="True" />
+
+        <Button Grid.Row="5" Grid.Column="1" Click="cmdSendKeyboardCommand_Click" Margin="0,10,0,0">Send Keys</Button>
     </Grid>
 </Window>

@@ -77,6 +77,7 @@
     <Compile Include="UserInputSimulation.xaml.cs">
       <DependentUpon>UserInputSimulation.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserKeyboardCommand.cs" />
     <Compile Include="UserMouseCommand.cs" />
     <Compile Include="UserMouseEvent.cs" />
     <Compile Include="Win32Api.cs" />

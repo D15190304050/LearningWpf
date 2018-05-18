@@ -13,5 +13,11 @@ namespace RemoteDesktop
     /// </summary>
     public partial class App : Application
     {
+        public const string CloseConnection = "[<Close/>]";
+
+        public const string UserCommandStart = "[<UserCommand>]";
+        public const string UserCommandEnd = "[</UserCommand>]";
+
+
     }
 }

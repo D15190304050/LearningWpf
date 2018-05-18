@@ -27,7 +27,9 @@ namespace RemoteDesktop
         public override void Execute()
         {
             UserMouseEvent.SetCursorPos(this.MouseX, this.MouseY);
-            UserMouseEvent.RaiseMouseEvent(MouseEventFlag.Absolute | this.MouseEventFlag, this.MouseX, this.MouseY, this.WheelMovement);
+
+            if (this.MouseEventFlag != MouseEventFlag.Move)
+                UserMouseEvent.RaiseMouseEvent(MouseEventFlag.Absolute | this.MouseEventFlag, this.MouseX, this.MouseY, this.WheelMovement);
         }
 
         public override string ToString()

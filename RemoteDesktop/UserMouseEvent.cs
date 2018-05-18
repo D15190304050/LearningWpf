@@ -23,16 +23,22 @@ namespace RemoteDesktop
             mouse_event(flags | MouseEventFlag.Absolute, mouseX, mouseY, wheelMovement, UIntPtr.Zero);
         }
 
-        public static void MouseLeftClick(int dx, int dy, int data)
+        public static void MouseLeftClick(int mouseX, int mouseY)
         {
-            mouse_event(MouseEventFlag.LeftDown | MouseEventFlag.Absolute, dx, dy, data, UIntPtr.Zero);
-            mouse_event(MouseEventFlag.LeftUp | MouseEventFlag.Absolute, dx, dy, data, UIntPtr.Zero);
+            mouse_event(MouseEventFlag.LeftDown | MouseEventFlag.Absolute, mouseX, mouseY, 0, UIntPtr.Zero);
+            mouse_event(MouseEventFlag.LeftUp | MouseEventFlag.Absolute, mouseX, mouseY, 0, UIntPtr.Zero);
         }
 
-        public static void MouseRightClick(int dx, int dy, int data)
+        public static void MouseRightClick(int mouseX, int mouseY)
         {
-            mouse_event(MouseEventFlag.RightDown | MouseEventFlag.Absolute, dx, dy, data, UIntPtr.Zero);
-            mouse_event(MouseEventFlag.RightUp | MouseEventFlag.Absolute, dx, dy, data, UIntPtr.Zero);
+            mouse_event(MouseEventFlag.RightDown | MouseEventFlag.Absolute, mouseX, mouseY, 0, UIntPtr.Zero);
+            mouse_event(MouseEventFlag.RightUp | MouseEventFlag.Absolute, mouseX, mouseY, 0, UIntPtr.Zero);
+        }
+
+        public static void MouseLeftDoubleClick(int mouseX, int mouseY)
+        {
+            MouseLeftClick(mouseX, mouseY);
+            MouseLeftClick(mouseX, mouseY);
         }
     }
 }

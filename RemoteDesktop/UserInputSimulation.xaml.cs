@@ -60,12 +60,12 @@ namespace RemoteDesktop
         private void cmdMouseRightClick_Click(object sender, RoutedEventArgs e)
         {
             UserMouseEvent.SetCursorPos(1920, 1080);
-            UserMouseEvent.MouseRightClick(1920, 1080, 0);
+            UserMouseEvent.MouseRightClick(1920, 1080);
 
             //MessageBox.Show("Ready for next?");
 
             UserMouseEvent.SetCursorPos(2560, 1440);
-            UserMouseEvent.MouseRightClick(2560, 1440, 0);
+            UserMouseEvent.MouseRightClick(2560, 1440);
 
             // Show some thing when this window is not active.
             // This test shows that the server part can still work when dealing with client commands.
@@ -75,7 +75,7 @@ namespace RemoteDesktop
         private void cmdKeyboardInput_Click(object sender, RoutedEventArgs e)
         {
             UserMouseEvent.SetCursorPos(1920, 1080);
-            UserMouseEvent.MouseLeftClick(1920, 1080, 0);
+            UserMouseEvent.MouseLeftClick(1920, 1080);
 
             // Send keys to current active window.
             SendKeys.SendWait("ABC");

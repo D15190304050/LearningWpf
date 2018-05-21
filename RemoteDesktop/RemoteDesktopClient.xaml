@@ -1,0 +1,24 @@
+﻿<Window x:Class="RemoteDesktop.RemoteDesktopClient"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:RemoteDesktop"
+        xmlns:WinFormControls="clr-namespace:System.Windows.Forms;assembly=System.Windows.Forms"
+        mc:Ignorable="d"
+        Title="RemoteDesktopClient" Height="450" Width="800"
+        Loaded="Window_Loaded"
+        KeyDown="Window_KeyDown"
+        Closing="Window_Closing"
+        >
+    <Grid>
+        <Border BorderBrush="Black" BorderThickness="2">
+            <WindowsFormsHost Name="wfh">
+                <WinFormControls:PictureBox
+                    MouseDown="PictureBox_MouseDown"
+                    MouseUp="PictureBox_MouseUp"
+                    />
+            </WindowsFormsHost>
+        </Border>
+    </Grid>
+</Window>

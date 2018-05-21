@@ -61,6 +61,15 @@
     <Compile Include="CommandType.cs" />
     <Compile Include="MouseEventFlag.cs" />
     <Compile Include="MouseHook.cs" />
+    <Compile Include="RemoteDesktopClient.xaml.cs">
+      <DependentUpon>RemoteDesktopClient.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="RemoteDesktopLauncher.xaml.cs">
+      <DependentUpon>RemoteDesktopLauncher.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="RemoteDesktopServer.xaml.cs">
+      <DependentUpon>RemoteDesktopServer.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ScreenCaptureReceiver.xaml.cs">
       <DependentUpon>ScreenCaptureReceiver.xaml</DependentUpon>
     </Compile>
@@ -93,6 +102,18 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="RemoteDesktopClient.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="RemoteDesktopLauncher.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="RemoteDesktopServer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="ScreenCaptureReceiver.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

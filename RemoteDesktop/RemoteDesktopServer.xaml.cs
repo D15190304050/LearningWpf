@@ -11,21 +11,21 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using System.Windows.Forms;
-using System.Drawing;
 using System.Net;
 using System.Net.Sockets;
 using System.Timers;
+using System.Windows.Forms;
+using System.Drawing;
 using System.IO;
-using System.Runtime.Serialization.Formatters.Binary;
 using System.Threading;
+using System.Runtime.Serialization.Formatters.Binary;
 
 namespace RemoteDesktop
 {
     /// <summary>
-    /// ScreenCapture.xaml 的交互逻辑
+    /// RemoteDesktopServer.xaml 的交互逻辑
     /// </summary>
-    public partial class ScreenCaptureSender : Window
+    public partial class RemoteDesktopServer : Window
     {
         /// <summary>
         /// Socket for this window to receive connection request.
@@ -42,10 +42,9 @@ namespace RemoteDesktop
         /// </summary>
         private System.Timers.Timer timer;
 
-        /// <summary>
-        /// Initializes the window for this window.
-        /// </summary>
-        public ScreenCaptureSender()
+        private string clientCommand;
+
+        public RemoteDesktopServer()
         {
             InitializeComponent();
         }
@@ -55,30 +54,34 @@ namespace RemoteDesktop
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void cmdScreenCapture_Click(object sender, RoutedEventArgs e)
+        private void cmdStart_Click(object sender, RoutedEventArgs e)
         {
-            Thread t = new Thread(() =>
+            Thread tSendScreenCapture = new Thread(() =>
             {
                 InitializeSockets();
+                SendScreenSize();
+
+                Thread tExecuteCommand = new Thread(() =>
+                {
+                    for (; ; )
+                    {
+                        ExecuteCommand();
+                        if (clientCommand == App.CloseConnection)
+                            return;
+                    }
+                });
+                tExecuteCommand.Start();
+
                 InitializeTimer();
             });
-            t.Start();
+            tSendScreenCapture.Start();
         }
 
-        /// <summary>
-        /// A test method here for testing the screen capture function as a standalong application.
-        /// </summary>
-        private void CaptureScreen()
+        private void SendScreenSize()
         {
-            Bitmap bmp = new Bitmap(Screen.PrimaryScreen.Bounds.Width, Screen.PrimaryScreen.Bounds.Height);
-            Graphics graphics = Graphics.FromImage(bmp);
-            graphics.CopyFromScreen(new System.Drawing.Point(0, 0), new System.Drawing.Point(0, 0), bmp.Size);
-            BitmapImage screenCapture = BitmapToBitmapImage(bmp);
-
-            bmp.Dispose();
-            graphics.Dispose();
-
-            imgScreenCapture.Source = screenCapture;
+            // The 2nd new line character is only used to seperate the information of screen size and the potential 1st screen capture.
+            string serverScreenSize = Screen.PrimaryScreen.Bounds.Width + "\n" + Screen.PrimaryScreen.Bounds.Height + "\n";
+            clientSocket.Send(Encoding.UTF8.GetBytes(serverScreenSize));
         }
 
         /// <summary>
@@ -106,8 +109,9 @@ namespace RemoteDesktop
         /// </summary>
         private void InitializeSockets()
         {
-            IPAddress ip = IPAddress.Parse("172.21.228.124");
-            IPEndPoint localPoint = new IPEndPoint(ip, 16845);
+            // Try to get the real IP address of the server, the following IP address is just the IP address for this machine in the test environment.
+            IPAddress ip = IPAddress.Parse(App.ServerIPString);
+            IPEndPoint localPoint = new IPEndPoint(ip, App.ServerPort);
 
             serverSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
             serverSocket.Bind(localPoint);
@@ -138,9 +142,6 @@ namespace RemoteDesktop
 
             // Send screen capture.
             clientSocket.Send(imageBytes);
-
-            // Wait for client signal.
-            clientSocket.Receive(new byte[5]);
         }
 
         /// <summary>
@@ -187,6 +188,31 @@ namespace RemoteDesktop
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             timer.Close();
+        }
+
+        private void ExecuteCommand()
+        {
+            byte[] receiveBuffer = new byte[1024];
+
+            int receivedLength = clientSocket.Receive(receiveBuffer);
+            clientCommand = Encoding.UTF8.GetString(receiveBuffer).Substring(0, receivedLength);
+            if (clientCommand == "[<Close/>]")
+            {
+                clientSocket.Close();
+                return;
+            }
+
+            MemoryStream ms = new MemoryStream(receiveBuffer, 0, receivedLength);
+            BinaryFormatter formatter = new BinaryFormatter();
+
+            //ms.Position = 0;
+            for (int i = 1; ms.Position < ms.Length; i++)
+            {
+                UserCommandBase userCommand = (UserCommandBase)(formatter.Deserialize(ms));
+                userCommand.Execute();
+
+                ms.Position = i * 512;
+            }
         }
     }
 }

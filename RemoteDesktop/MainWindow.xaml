@@ -21,6 +21,8 @@
             <Button>UserInputSimulation</Button>
             <Button>UserCommandSender</Button>
             <Button>UserCommandExecutor</Button>
+            <Button>RemoteDesktopLauncher</Button>
+            <Button>RemoteDesktopServer</Button>
         </StackPanel>
     </Grid>
 </Window>

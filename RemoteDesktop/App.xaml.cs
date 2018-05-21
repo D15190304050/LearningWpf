@@ -15,9 +15,8 @@ namespace RemoteDesktop
     {
         public const string CloseConnection = "[<Close/>]";
 
-        public const string UserCommandStart = "[<UserCommand>]";
-        public const string UserCommandEnd = "[</UserCommand>]";
+        public const int ServerPort = 16845;
 
-
+        public const string ServerIPString = "172.21.228.70";
     }
 }

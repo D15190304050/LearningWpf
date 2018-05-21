@@ -193,7 +193,7 @@ namespace RemoteDesktop
                 byte[] mouseCommandBytes = ms.GetBuffer();
                 ms.Close();
 
-                //clientSocket.Send(mouseCommandBytes);
+                clientSocket.Send(mouseCommandBytes);
             }
         }
 
@@ -221,7 +221,7 @@ namespace RemoteDesktop
                 byte[] mouseCommandBytes = ms.GetBuffer();
                 ms.Close();
 
-                //clientSocket.Send(mouseCommandBytes);
+                clientSocket.Send(mouseCommandBytes);
             }
 
             //System.Windows.MessageBox.Show($"({e.X},{e.Y})");
@@ -229,7 +229,166 @@ namespace RemoteDesktop
 
         private void Window_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
         {
-            System.Windows.MessageBox.Show($"{e.Key} pressed");
+            Key key = e.Key;
+            Debug.WriteLine(key + " (" + e.SystemKey + ")");
+
+            UserKeyboardCommand keyboardCommand = null;
+
+            switch (key)
+            {
+                case Key.A:
+                case Key.B:
+                case Key.C:
+                case Key.D:
+                case Key.E:
+                case Key.F:
+                case Key.G:
+                case Key.H:
+                case Key.I:
+                case Key.J:
+                case Key.K:
+                case Key.L:
+                case Key.M:
+                case Key.N:
+                case Key.O:
+                case Key.P:
+                case Key.Q:
+                case Key.R:
+                case Key.S:
+                case Key.T:
+                case Key.U:
+                case Key.V:
+                case Key.W:
+                case Key.X:
+                case Key.Y:
+                case Key.Z:
+                    keyboardCommand = new UserKeyboardCommand(e.Key.ToString());
+                    break;
+
+                case Key.Left:
+                case Key.Right:
+                case Key.Up:
+                case Key.Down:
+                case Key.Add:
+                case Key.Subtract:
+                case Key.Multiply:
+                case Key.Divide:
+                case Key.F1:
+                case Key.F2:
+                case Key.F3:
+                case Key.F4:
+                case Key.F5:
+                case Key.F6:
+                case Key.F7:
+                case Key.F8:
+                case Key.F9:
+                case Key.F10:
+                case Key.F11:
+                case Key.F12:
+                case Key.F13:
+                case Key.F14:
+                case Key.F15:
+                case Key.F16:
+                case Key.Tab:
+                case Key.Enter:
+                case Key.Space:
+                case Key.Delete:
+                case Key.Home:
+                case Key.NumLock:
+                    keyboardCommand = new UserKeyboardCommand("{" + e.Key.ToString().ToUpper() + "}");
+                    break;
+
+                case Key.Back:
+                    keyboardCommand = new UserKeyboardCommand("{BACKSPACE}");
+                    break;
+
+                case Key.Escape:
+                    keyboardCommand = new UserKeyboardCommand("{ESC}");
+                    break;
+
+                case Key.D0:
+                case Key.D1:
+                case Key.D2:
+                case Key.D3:
+                case Key.D4:
+                case Key.D5:
+                case Key.D6:
+                case Key.D7:
+                case Key.D8:
+                case Key.D9:
+                    keyboardCommand = new UserKeyboardCommand(e.Key.ToString()[1].ToString());
+                    break;
+
+                case Key.NumPad0:
+                case Key.NumPad1:
+                case Key.NumPad2:
+                case Key.NumPad3:
+                case Key.NumPad4:
+                case Key.NumPad5:
+                case Key.NumPad6:
+                case Key.NumPad7:
+                case Key.NumPad8:
+                case Key.NumPad9:
+                    keyboardCommand = new UserKeyboardCommand(e.Key.ToString()[5].ToString());
+                    break;
+
+                case Key.LeftCtrl:
+                case Key.RightCtrl:
+                    keyboardCommand = new UserKeyboardCommand("^");
+                    break;
+
+                case Key.LeftShift:
+                case Key.RightShift:
+                    keyboardCommand = new UserKeyboardCommand("+");
+                    break;
+
+                case Key.LeftAlt:
+                case Key.RightAlt:
+                    keyboardCommand = new UserKeyboardCommand("%");
+                    break;
+
+                case Key.LWin:
+                case Key.RWin:
+                    keyboardCommand = new UserKeyboardCommand("^{ESC}");
+                    break;
+            }
+
+            ModifierKeys modifier = e.KeyboardDevice.Modifiers;
+
+
+            if (modifier == (ModifierKeys.Control | ModifierKeys.Shift))
+                keyboardCommand = new UserKeyboardCommand("^+");
+            else if (modifier == (ModifierKeys.Control | ModifierKeys.Alt))
+                keyboardCommand = new UserKeyboardCommand("^%");
+            else if (modifier == (ModifierKeys.Alt | ModifierKeys.Shift))
+                keyboardCommand = new UserKeyboardCommand("%^");
+            else if ((keyboardCommand != null) &&
+                     (modifier == ModifierKeys.Shift) &&
+                     (key != Key.LeftShift) &&
+                     (key != Key.RightShift))
+                keyboardCommand = new UserKeyboardCommand("+" + keyboardCommand.Key);
+            else if ((keyboardCommand != null) &&
+                     (modifier == ModifierKeys.Control) &&
+                     (key != Key.LeftCtrl) &&
+                     (key != Key.RightCtrl))
+                keyboardCommand = new UserKeyboardCommand("^" + keyboardCommand.Key);
+            else if ((keyboardCommand != null) &&
+                     (modifier == ModifierKeys.Alt) &&
+                     (key != Key.LeftAlt) &&
+                     (key != Key.RightAlt))
+                keyboardCommand = new UserKeyboardCommand("%" + keyboardCommand.Key);
+
+            if (keyboardCommand != null)
+            {
+                MemoryStream ms = new MemoryStream();
+
+                formatter.Serialize(ms, keyboardCommand);
+
+                byte[] keyboardCommandBytes = ms.GetBuffer();
+                ms.Close();
+
+                clientSocket.Send(keyboardCommandBytes);
+            }
         }
     }
 }

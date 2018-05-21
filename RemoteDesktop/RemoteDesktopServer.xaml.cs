@@ -187,31 +187,42 @@ namespace RemoteDesktop
         /// <param name="e"></param>
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            timer.Close();
+            //timer.Close();
         }
 
         private void ExecuteCommand()
         {
-            byte[] receiveBuffer = new byte[1024];
-
-            int receivedLength = clientSocket.Receive(receiveBuffer);
-            clientCommand = Encoding.UTF8.GetString(receiveBuffer).Substring(0, receivedLength);
-            if (clientCommand == "[<Close/>]")
+            try
             {
-                clientSocket.Close();
-                return;
+                byte[] receiveBuffer = new byte[1024];
+
+                int receivedLength = clientSocket.Receive(receiveBuffer);
+                clientCommand = Encoding.UTF8.GetString(receiveBuffer).Substring(0, receivedLength);
+                if (clientCommand == "[<Close/>]")
+                {
+                    clientSocket.Close();
+                    timer.Stop();
+                    timer.Close();
+                    return;
+                }
+
+                MemoryStream ms = new MemoryStream(receiveBuffer, 0, receivedLength);
+                BinaryFormatter formatter = new BinaryFormatter();
+
+                //ms.Position = 0;
+                for (int i = 1; ms.Position < ms.Length; i++)
+                {
+                    UserCommandBase userCommand = (UserCommandBase)(formatter.Deserialize(ms));
+                    userCommand.Execute();
+
+                    ms.Position = i * 512;
+                }
             }
-
-            MemoryStream ms = new MemoryStream(receiveBuffer, 0, receivedLength);
-            BinaryFormatter formatter = new BinaryFormatter();
-
-            //ms.Position = 0;
-            for (int i = 1; ms.Position < ms.Length; i++)
+            catch (SocketException)
             {
-                UserCommandBase userCommand = (UserCommandBase)(formatter.Deserialize(ms));
-                userCommand.Execute();
-
-                ms.Position = i * 512;
+                clientCommand = "[<Close/>]";
+                clientSocket.Close();
+                timer.Stop();
             }
         }
     }

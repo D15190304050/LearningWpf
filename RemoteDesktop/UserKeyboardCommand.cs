@@ -11,21 +11,21 @@ namespace RemoteDesktop
     [Serializable]
     public class UserKeyboardCommand : UserCommandBase
     {
-        private string key;
+        public string Key { get; set; }
 
         public UserKeyboardCommand(string key)
         {
-            this.key = key;
+            this.Key = key;
         }
 
         public override void Execute()
         {
-            SendKeys.SendWait(key);
+            SendKeys.SendWait(Key);
         }
 
         public override string ToString()
         {
-            return "keyboard: " + key;
+            return "keyboard: " + Key;
         }
     }
 }

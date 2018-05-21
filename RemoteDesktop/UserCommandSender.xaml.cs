@@ -83,30 +83,30 @@ namespace RemoteDesktop
             if (!string.IsNullOrEmpty(keysToSend))
             {
                 // Send keys 1 by 1.
-                foreach (char c in keysToSend)
-                {
-                    UserKeyboardCommand keyboardCommand = new UserKeyboardCommand(c.ToString());
+                //foreach (char c in keysToSend)
+                //{
+                //    UserKeyboardCommand keyboardCommand = new UserKeyboardCommand(c.ToString());
 
-                    MemoryStream ms = new MemoryStream();
-                    formatter = new BinaryFormatter();
-                    formatter.Serialize(ms, keyboardCommand);
+                //    MemoryStream ms = new MemoryStream();
+                //    formatter = new BinaryFormatter();
+                //    formatter.Serialize(ms, keyboardCommand);
 
-                    byte[] keyboardCommandBytes = ms.GetBuffer();
-                    ms.Close();
+                //    byte[] keyboardCommandBytes = ms.GetBuffer();
+                //    ms.Close();
 
-                    clientSocket.Send(keyboardCommandBytes);
-                }
+                //    clientSocket.Send(keyboardCommandBytes);
+                //}
 
-                // Send all keys together.
-                //UserKeyboardCommand keyboardCommand = new UserKeyboardCommand(keysToSend);
-                //MemoryStream ms = new MemoryStream();
-                //BinaryFormatter formatter = new BinaryFormatter();
-                //formatter.Serialize(ms, keyboardCommand);
+                //Send all keys together.
+                UserKeyboardCommand keyboardCommand = new UserKeyboardCommand(keysToSend);
+                MemoryStream ms = new MemoryStream();
+                BinaryFormatter formatter = new BinaryFormatter();
+                formatter.Serialize(ms, keyboardCommand);
 
-                //byte[] mouseCommandBytes = ms.GetBuffer();
-                //ms.Close();
+                byte[] mouseCommandBytes = ms.GetBuffer();
+                ms.Close();
 
-                //clientSocket.Send(mouseCommandBytes);
+                clientSocket.Send(mouseCommandBytes);
 
                 FocusManager.SetFocusedElement(this, txtKeysToSend);
             }

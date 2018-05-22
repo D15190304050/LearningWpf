@@ -27,15 +27,15 @@ namespace RemoteDesktop
 
         public delegate int HookProc(int nCode, IntPtr wParam, IntPtr lParam);
 
-        //安装钩子
+        // Set a hook.
         [DllImport("user32.dll", CharSet = CharSet.Auto, CallingConvention = CallingConvention.StdCall)]
         public static extern int SetWindowsHookEx(int idHook, HookProc lpfn, IntPtr hInstance, int threadId);
 
-        //卸载钩子
+        // Unhook.
         [DllImport("user32.dll", CharSet = CharSet.Auto, CallingConvention = CallingConvention.StdCall)]
         public static extern bool UnhookWindowsHookEx(int idHook);
 
-        //调用下一个钩子
+        // Call next hook.
         [DllImport("user32.dll", CharSet = CharSet.Auto, CallingConvention = CallingConvention.StdCall)]
         public static extern int CallNextHookEx(int idHook, int nCode, IntPtr wParam, IntPtr lParam);
     }

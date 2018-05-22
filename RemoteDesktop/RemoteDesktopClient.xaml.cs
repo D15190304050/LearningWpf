@@ -27,7 +27,10 @@ namespace RemoteDesktop
     /// </summary>
     public partial class RemoteDesktopClient : Window
     {
-        private IPAddress targetIPAddress;
+        /// <summary>
+        /// The IP address of the server to connect to.
+        /// </summary>
+        private IPAddress serverIPAddress;
 
         /// <summary>
         /// A PictureBox for showing screen captures.
@@ -39,11 +42,6 @@ namespace RemoteDesktop
         private PictureBox pb;
 
         /// <summary>
-        /// A timer for invoke Elapsed event.
-        /// </summary>
-        private System.Timers.Timer timer;
-
-        /// <summary>
         /// Socket for this window to communicate with remote server.
         /// </summary>
         private Socket clientSocket;
@@ -53,26 +51,46 @@ namespace RemoteDesktop
         /// </summary>
         private byte[] receiveBuffer;
 
+        /// <summary>
+        /// The pixel width of the server screen.
+        /// </summary>
         private int serverScreenWidth;
+
+        /// <summary>
+        /// The pixel height of the server screen.
+        /// </summary>
         private int serverScreenHeight;
 
+        /// <summary>
+        /// A boolean flag indicates whether the socket needs to receive screen captures from the server.
+        /// </summary>
         private bool receiving;
+
+        //// <summary>
+        /// A binary formatter for serializing and deserializing C# objects.
+        /// </summary>
         private BinaryFormatter formatter;
 
-        public RemoteDesktopClient(IPAddress targetIPAddress)
+        /// <summary>
+        /// Initializes the window of remote desktop with the specified server IP address.
+        /// </summary>
+        /// <param name="serverIPAddress">The specified server IP address.</param>
+        public RemoteDesktopClient(IPAddress serverIPAddress)
         {
-            this.targetIPAddress = targetIPAddress;
+            // Get the server IP address.
+            this.serverIPAddress = serverIPAddress;
+
+            // Start receiving screen captures.
             receiving = true;
+
+            // Initialize the formatter.
             formatter = new BinaryFormatter();
 
+            // Initialize UI elements in the window.
             InitializeComponent();
 
             // Get the PictureBox control.
             pb = (PictureBox)wfh.Child;
-
-            // Set timer.
-            timer = new System.Timers.Timer(100);
-            timer.Elapsed += (o, e) => ReceiveScreenCapture();
 
             // Initialize the buffer for receiving bytes from socket.
             receiveBuffer = new byte[1024 * 1024 * 10];
@@ -87,15 +105,15 @@ namespace RemoteDesktop
         {
             // Initialize the client socket and try to build a connection.
             clientSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-            clientSocket.Connect(targetIPAddress, App.ServerPort);
+            clientSocket.Connect(serverIPAddress, App.ServerPort);
 
-            //// Start timer.
-            //timer.Start();
-
+            // Keep running the thread for receiving and showing server screen captures until it doesn't need to do this.
             Thread t = new Thread(() =>
             {
+                // Get the pixel width and height before receiving and showing.
                 ParseWidthAndHeight();
 
+                // Start receiving and showing.
                 while (receiving)
                     ReceiveScreenCapture();
             });
@@ -143,21 +161,29 @@ namespace RemoteDesktop
             }
             catch (ArgumentException)
             {
-                //System.Windows.MessageBox.Show(ex.Message + "\n" + ex.StackTrace);
+                // Ignore this exception.
             }
             catch (NullReferenceException ex)
             {
                 System.Windows.MessageBox.Show(ex.Message + "\n" + ex.StackTrace);
-                timer.Close();
             }
         }
 
+        /// <summary>
+        /// Gets the pixel width and height before receiving and showing.
+        /// </summary>
         private void ParseWidthAndHeight()
         {
+            // Receive message.
             int receivedLength = clientSocket.Receive(receiveBuffer);
+
+            // Decode bytes to string.
             string widthAndHeight = Encoding.UTF8.GetString(receiveBuffer).Substring(0, receivedLength);
+
+            // Split the string into words.
             string[] values = widthAndHeight.Split('\n');
 
+            // Parse the width and height.
             serverScreenWidth = int.Parse(values[0]);
             serverScreenHeight = int.Parse(values[1]);
         }
@@ -169,20 +195,30 @@ namespace RemoteDesktop
         /// <param name="e"></param>
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
+            // Stop receiving screen captures, this will terminate the thread for this task.
             receiving = false;
+
+            // Send the command for ending communication.
             clientSocket.Send(Encoding.UTF8.GetBytes("[<Close/>]"));
+
+            // Close the client socket.
             clientSocket.Close();
         }
 
+        /// <summary>
+        /// Sends the mouse down event when the user press the mouse button.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void PictureBox_MouseDown(object sender, System.Windows.Forms.MouseEventArgs e)
         {
+            // Show the coordinate of the mouse in debug window.
             Debug.WriteLine($"Mouse Down at: ({e.X},{e.Y})");
 
-            if ((e.X < 0) || (e.Y < 0))
-                return;
-
+            // Initialize the command as null.
             UserMouseCommand mouseCommand = null;
 
+            // Get the clicked mouse button and initialize the command.
             if (e.Button == MouseButtons.Left)
                 mouseCommand = new UserMouseCommand(e.X, e.Y, 0, MouseEventFlag.LeftDown);
             else if (e.Button == MouseButtons.Right)
@@ -191,79 +227,118 @@ namespace RemoteDesktop
             // This null check is unnecessary in formal edition, only useful when developing.
             if (mouseCommand != null)
             {
+                // Serialize the command.
                 MemoryStream ms = new MemoryStream();
-
                 formatter.Serialize(ms, mouseCommand);
-
                 byte[] mouseCommandBytes = ms.GetBuffer();
                 ms.Close();
 
+                // Send the command.
                 clientSocket.Send(mouseCommandBytes);
             }
         }
 
+        /// <summary>
+        /// Sends the mouse down event when the user release the mouse button.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void PictureBox_MouseUp(object sender, System.Windows.Forms.MouseEventArgs e)
+        {
+            // Show the coordinate of the mouse in debug window.
+            Debug.WriteLine($"Mouse Up at: ({e.X},{e.Y})");
+
+            // Initialize the command as null.
+            UserMouseCommand mouseCommand = null;
+
+            // Get the clicked mouse button and initialize the command.
+            if (e.Button == MouseButtons.Left)
+                mouseCommand = new UserMouseCommand(e.X, e.Y, 0, MouseEventFlag.LeftUp);
+            else if (e.Button == MouseButtons.Right)
+                mouseCommand = new UserMouseCommand(e.X, e.Y, 0, MouseEventFlag.RightUp);
+
+            // This null check is unnecessary in formal edition, only useful when developing.
+            if (mouseCommand != null)
+            {
+                // Serialize the command.
+                MemoryStream ms = new MemoryStream();
+                formatter.Serialize(ms, mouseCommand);
+                byte[] mouseCommandBytes = ms.GetBuffer();
+                ms.Close();
+
+                // Send the command.
+                clientSocket.Send(mouseCommandBytes);
+            }
+        }
+
+        /// <summary>
+        /// Sends the mouse down event when the user roll the mouse wheel.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void PictureBox_MouseWheel(object sender, System.Windows.Forms.MouseEventArgs e)
         {
+            // Show the coordinate of the mouse in debug window.
             Debug.WriteLine($"Mouse Down at: ({e.X},{e.Y})");
 
-            if ((e.X < 0) || (e.Y < 0))
-                return;
-
+            // Create the mouse wheel command.
             UserMouseCommand mouseCommand = new UserMouseCommand(e.X, e.Y, e.Delta, MouseEventFlag.Wheel);
 
             // This null check is unnecessary in formal edition, only useful when developing.
             if (mouseCommand != null)
             {
+                // Serialize the command.
                 MemoryStream ms = new MemoryStream();
-
                 formatter.Serialize(ms, mouseCommand);
-
                 byte[] mouseCommandBytes = ms.GetBuffer();
                 ms.Close();
 
+                // Send the command.
                 clientSocket.Send(mouseCommandBytes);
             }
         }
 
-        private void PictureBox_MouseUp(object sender, System.Windows.Forms.MouseEventArgs e)
+        /// <summary>
+        /// Sends the mouse down event when the user roll the mouse wheel.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void PictureBox_MouseMove(object sender, System.Windows.Forms.MouseEventArgs e)
         {
-            Debug.WriteLine($"Mouse Up at: ({e.X},{e.Y})");
+            // Show the coordinate of the mouse in debug window.
+            Debug.WriteLine($"Mouse Down at: ({e.X},{e.Y})");
 
-            UserMouseCommand mouseCommand = null;
-
-            int mouseX = Math.Abs(e.X);
-            int mouseY = Math.Abs(e.Y);
-
-            if (e.Button == MouseButtons.Left)
-                mouseCommand = new UserMouseCommand(mouseX, mouseY, 0, MouseEventFlag.LeftUp);
-            else if (e.Button == MouseButtons.Right)
-                mouseCommand = new UserMouseCommand(mouseX, mouseY, 0, MouseEventFlag.RightUp);
+            // Create the mouse move command.
+            UserMouseCommand mouseCommand = new UserMouseCommand(e.X, e.Y, 0, MouseEventFlag.Move);
 
             // This null check is unnecessary in formal edition, only useful when developing.
             if (mouseCommand != null)
             {
+                // Serialize the command.
                 MemoryStream ms = new MemoryStream();
-
                 formatter.Serialize(ms, mouseCommand);
-
                 byte[] mouseCommandBytes = ms.GetBuffer();
                 ms.Close();
 
+                // Send the command.
                 clientSocket.Send(mouseCommandBytes);
             }
-
-            //System.Windows.MessageBox.Show($"({e.X},{e.Y})");
         }
 
         private void Window_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
         {
+            // Get the key pressed.
             Key key = e.Key;
+
+            // Write the key in the debug window.
             Debug.WriteLine(key + " (" + e.SystemKey + ")");
 
+            // Initialize the keyborad command as null.
             UserKeyboardCommand keyboardCommand = null;
 
             switch (key)
             {
+                // Send lower case of alphabetic characters.
                 case Key.A:
                 case Key.B:
                 case Key.C:
@@ -293,6 +368,7 @@ namespace RemoteDesktop
                     keyboardCommand = new UserKeyboardCommand(e.Key.ToString().ToLower());
                     break;
 
+                // These commands can be represents as {[Command]}.
                 case Key.Left:
                 case Key.Right:
                 case Key.Up:
@@ -324,6 +400,36 @@ namespace RemoteDesktop
                     keyboardCommand = new UserKeyboardCommand("{" + e.Key.ToString().ToUpper() + "}");
                     break;
 
+                // Digits on the main area.
+                case Key.D0:
+                case Key.D1:
+                case Key.D2:
+                case Key.D3:
+                case Key.D4:
+                case Key.D5:
+                case Key.D6:
+                case Key.D7:
+                case Key.D8:
+                case Key.D9:
+                    keyboardCommand = new UserKeyboardCommand(e.Key.ToString()[1].ToString());
+                    break;
+
+                // Digits on the num pad.
+                case Key.NumPad0:
+                case Key.NumPad1:
+                case Key.NumPad2:
+                case Key.NumPad3:
+                case Key.NumPad4:
+                case Key.NumPad5:
+                case Key.NumPad6:
+                case Key.NumPad7:
+                case Key.NumPad8:
+                case Key.NumPad9:
+                    keyboardCommand = new UserKeyboardCommand(e.Key.ToString()[6].ToString());
+                    break;
+
+                // Special commands which needs special string command.
+
                 case Key.Space:
                     keyboardCommand = new UserKeyboardCommand(" ");
                     break;
@@ -338,32 +444,6 @@ namespace RemoteDesktop
 
                 case Key.Escape:
                     keyboardCommand = new UserKeyboardCommand("{ESC}");
-                    break;
-
-                case Key.D0:
-                case Key.D1:
-                case Key.D2:
-                case Key.D3:
-                case Key.D4:
-                case Key.D5:
-                case Key.D6:
-                case Key.D7:
-                case Key.D8:
-                case Key.D9:
-                    keyboardCommand = new UserKeyboardCommand(e.Key.ToString()[1].ToString());
-                    break;
-
-                case Key.NumPad0:
-                case Key.NumPad1:
-                case Key.NumPad2:
-                case Key.NumPad3:
-                case Key.NumPad4:
-                case Key.NumPad5:
-                case Key.NumPad6:
-                case Key.NumPad7:
-                case Key.NumPad8:
-                case Key.NumPad9:
-                    keyboardCommand = new UserKeyboardCommand(e.Key.ToString()[6].ToString());
                     break;
 
                 case Key.LeftCtrl:
@@ -430,9 +510,10 @@ namespace RemoteDesktop
                     break;
             }
 
+            // Get the modifier keys the user pressed.
             ModifierKeys modifier = e.KeyboardDevice.Modifiers;
 
-
+            // Configurations for conbination keys.
             if (modifier == (ModifierKeys.Control | ModifierKeys.Shift))
                 keyboardCommand = new UserKeyboardCommand("^+");
             else if (modifier == (ModifierKeys.Control | ModifierKeys.Alt))
@@ -454,45 +535,18 @@ namespace RemoteDesktop
                      (key != Key.LeftAlt) &&
                      (key != Key.RightAlt))
                 keyboardCommand = new UserKeyboardCommand("%" + keyboardCommand.Key);
-            //else if ((keyboardCommand != null) &&
-            //         (modifier == ModifierKeys.Windows) &&
-            //         (key != Key.LWin) &&
-            //         (key != Key.RWin))
-            //    keyboardCommand = new UserKeyboardCommand("");
 
+            // Send the keyboard command if it is null.
             if (keyboardCommand != null)
             {
+                // Serialize the command.
                 MemoryStream ms = new MemoryStream();
-
                 formatter.Serialize(ms, keyboardCommand);
-
                 byte[] keyboardCommandBytes = ms.GetBuffer();
                 ms.Close();
 
+                // Send the command.
                 clientSocket.Send(keyboardCommandBytes);
-            }
-        }
-
-        private void PictureBox_MouseMove(object sender, System.Windows.Forms.MouseEventArgs e)
-        {
-            Debug.WriteLine($"Mouse Down at: ({e.X},{e.Y})");
-
-            if ((e.X < 0) || (e.Y < 0))
-                return;
-
-            UserMouseCommand mouseCommand = new UserMouseCommand(e.X, e.Y, 0, MouseEventFlag.Move);
-
-            // This null check is unnecessary in formal edition, only useful when developing.
-            if (mouseCommand != null)
-            {
-                MemoryStream ms = new MemoryStream();
-
-                formatter.Serialize(ms, mouseCommand);
-
-                byte[] mouseCommandBytes = ms.GetBuffer();
-                ms.Close();
-
-                clientSocket.Send(mouseCommandBytes);
             }
         }
     }

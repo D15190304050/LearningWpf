@@ -42,10 +42,28 @@ namespace RemoteDesktop
         /// </summary>
         private System.Timers.Timer timer;
 
+        /// <summary>
+        /// The string representation of the received bytes array. It may contains a user command of close this socket.
+        /// </summary>
         private string clientCommand;
 
+        /// <summary>
+        /// The buffer for receiving contents sent by the client.
+        /// </summary>
+        private byte[] receiveBuffer;
+
+        /// <summary>
+        /// A binary formatter for serializing and deserializing C# objects.
+        /// </summary>
+        private BinaryFormatter formatter;
+
+        /// <summary>
+        /// Initializes the window for remote desktop server.
+        /// </summary>
         public RemoteDesktopServer()
         {
+            receiveBuffer = new byte[1024];
+            formatter = new BinaryFormatter();
             InitializeComponent();
         }
 
@@ -56,11 +74,18 @@ namespace RemoteDesktop
         /// <param name="e"></param>
         private void cmdStart_Click(object sender, RoutedEventArgs e)
         {
+            // Initialize the thread for capturing screen.
             Thread tSendScreenCapture = new Thread(() =>
             {
+                // Initialize socket.
                 InitializeSockets();
+
+                // Send the size of the server screen through client socket.
                 SendScreenSize();
 
+                // Initialize the thread for receiving command from client.
+                // This thread initialization operation must be put here because the thread for capturing screen will initialize the client socket after the start of this thread.
+                // So, put it here makes the sequence correct.
                 Thread tExecuteCommand = new Thread(() =>
                 {
                     for (; ; )
@@ -77,31 +102,14 @@ namespace RemoteDesktop
             tSendScreenCapture.Start();
         }
 
+        /// <summary>
+        /// Sends the size of the server secreen through client socket.
+        /// </summary>
         private void SendScreenSize()
         {
             // The 2nd new line character is only used to seperate the information of screen size and the potential 1st screen capture.
             string serverScreenSize = Screen.PrimaryScreen.Bounds.Width + "\n" + Screen.PrimaryScreen.Bounds.Height + "\n";
             clientSocket.Send(Encoding.UTF8.GetBytes(serverScreenSize));
-        }
-
-        /// <summary>
-        /// Convert Bitmap to BitmapImage.
-        /// </summary>
-        /// <param name="bitmap">The Bitmap instance that needs conversion.</param>
-        /// <returns>A BitmapImage Instance converted from the specified Bitmap instance.</returns>
-        private static BitmapImage BitmapToBitmapImage(Bitmap bitmap)
-        {
-            BitmapImage bitmapImage = new BitmapImage();
-            using (MemoryStream ms = new MemoryStream())
-            {
-                bitmap.Save(ms, System.Drawing.Imaging.ImageFormat.Bmp);
-                bitmapImage.BeginInit();
-                bitmapImage.StreamSource = ms;
-                bitmapImage.CacheOption = BitmapCacheOption.OnLoad;
-                bitmapImage.EndInit();
-                bitmapImage.Freeze();
-            }
-            return bitmapImage;
         }
 
         /// <summary>
@@ -113,10 +121,12 @@ namespace RemoteDesktop
             IPAddress ip = IPAddress.Parse(App.ServerIPString);
             IPEndPoint localPoint = new IPEndPoint(ip, App.ServerPort);
 
+            // Initialize the server socket.
             serverSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
             serverSocket.Bind(localPoint);
             serverSocket.Listen(5);
 
+            // Wait for connection from the client.
             clientSocket = serverSocket.Accept();
         }
 
@@ -125,6 +135,7 @@ namespace RemoteDesktop
         /// </summary>
         private void InitializeTimer()
         {
+            // Send screen capture for every 100ms. I.E. send 10 images per second.
             timer = new System.Timers.Timer(100);
             timer.Elapsed += ElapsedHandler;
             timer.Start();
@@ -198,17 +209,23 @@ namespace RemoteDesktop
         /// <param name="e"></param>
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
+            // Close the timer and sockets when closing this window.
+            serverSocket.Close();
             timer.Close();
             clientSocket.Close();
         }
 
+        /// <summary>
+        /// Executes the command received from the client.
+        /// </summary>
         private void ExecuteCommand()
         {
             try
             {
-                byte[] receiveBuffer = new byte[1024];
-
+                // Receive the serialized user command.
                 int receivedLength = clientSocket.Receive(receiveBuffer);
+
+                // Try to view the bytes as a command string.
                 clientCommand = Encoding.UTF8.GetString(receiveBuffer).Substring(0, receivedLength);
                 if (clientCommand == "[<Close/>]")
                 {
@@ -217,15 +234,20 @@ namespace RemoteDesktop
                     return;
                 }
 
+                // Put the bytes into a memory stream.
                 MemoryStream ms = new MemoryStream(receiveBuffer, 0, receivedLength);
-                BinaryFormatter formatter = new BinaryFormatter();
 
-                //ms.Position = 0;
+                // Execute the user command.
+                // Note that for each UserCommand object, it needs a length of 512 B.
                 for (int i = 1; ms.Position < ms.Length; i++)
                 {
+                    // Deserialize the next object in the memory stream.
                     UserCommandBase userCommand = (UserCommandBase)(formatter.Deserialize(ms));
+
+                    // Execute the user command sent by the client.
                     userCommand.Execute();
 
+                    // Reset the position of the memory stream.
                     ms.Position = i * 512;
                 }
             }
@@ -235,9 +257,11 @@ namespace RemoteDesktop
             }
         }
 
+        /// <summary>
+        /// Releases resources when the client closes the socket.
+        /// </summary>
         private void SocketExceptionHandler()
         {
-            clientCommand = "[<Close/>]";
             clientSocket.Close();
             timer.Stop();
         }

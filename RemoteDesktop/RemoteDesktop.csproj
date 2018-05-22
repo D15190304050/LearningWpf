@@ -58,7 +58,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="CommandType.cs" />
     <Compile Include="MouseEventFlag.cs" />
     <Compile Include="MouseHook.cs" />
     <Compile Include="RemoteDesktopClient.xaml.cs">

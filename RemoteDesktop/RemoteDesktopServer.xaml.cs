@@ -149,6 +149,10 @@ namespace RemoteDesktop
             {
                 SocketExceptionHandler();
             }
+            catch (ObjectDisposedException)
+            {
+                SocketExceptionHandler();
+            }
         }
 
         /// <summary>

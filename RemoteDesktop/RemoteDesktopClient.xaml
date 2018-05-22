@@ -17,6 +17,8 @@
                 <WinFormControls:PictureBox
                     MouseDown="PictureBox_MouseDown"
                     MouseUp="PictureBox_MouseUp"
+                    MouseWheel="PictureBox_MouseWheel"
+                    MouseMove="PictureBox_MouseMove"
                     />
             </WindowsFormsHost>
         </Border>

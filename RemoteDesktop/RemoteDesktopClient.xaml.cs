@@ -128,6 +128,11 @@ namespace RemoteDesktop
                 // Show the received screen capture.
                 pb.Image = screenCapture;
             }
+            catch (SocketException)
+            {
+                receiving = false;
+                clientSocket.Close();
+            }
             catch (System.Runtime.InteropServices.ExternalException ex)
             {
                 System.Windows.MessageBox.Show(ex.Message + "\n" + ex.StackTrace);
@@ -136,7 +141,7 @@ namespace RemoteDesktop
             {
                 System.Windows.MessageBox.Show(ex.Message + "\n" + ex.StackTrace);
             }
-            catch (ArgumentException ex)
+            catch (ArgumentException)
             {
                 //System.Windows.MessageBox.Show(ex.Message + "\n" + ex.StackTrace);
             }
@@ -182,6 +187,29 @@ namespace RemoteDesktop
                 mouseCommand = new UserMouseCommand(e.X, e.Y, 0, MouseEventFlag.LeftDown);
             else if (e.Button == MouseButtons.Right)
                 mouseCommand = new UserMouseCommand(e.X, e.Y, 0, MouseEventFlag.RightDown);
+
+            // This null check is unnecessary in formal edition, only useful when developing.
+            if (mouseCommand != null)
+            {
+                MemoryStream ms = new MemoryStream();
+
+                formatter.Serialize(ms, mouseCommand);
+
+                byte[] mouseCommandBytes = ms.GetBuffer();
+                ms.Close();
+
+                clientSocket.Send(mouseCommandBytes);
+            }
+        }
+
+        private void PictureBox_MouseWheel(object sender, System.Windows.Forms.MouseEventArgs e)
+        {
+            Debug.WriteLine($"Mouse Down at: ({e.X},{e.Y})");
+
+            if ((e.X < 0) || (e.Y < 0))
+                return;
+
+            UserMouseCommand mouseCommand = new UserMouseCommand(e.X, e.Y, e.Delta, MouseEventFlag.Wheel);
 
             // This null check is unnecessary in formal edition, only useful when developing.
             if (mouseCommand != null)
@@ -262,7 +290,7 @@ namespace RemoteDesktop
                 case Key.X:
                 case Key.Y:
                 case Key.Z:
-                    keyboardCommand = new UserKeyboardCommand(e.Key.ToString());
+                    keyboardCommand = new UserKeyboardCommand(e.Key.ToString().ToLower());
                     break;
 
                 case Key.Left:
@@ -290,12 +318,18 @@ namespace RemoteDesktop
                 case Key.F15:
                 case Key.F16:
                 case Key.Tab:
-                case Key.Enter:
-                case Key.Space:
                 case Key.Delete:
                 case Key.Home:
                 case Key.NumLock:
                     keyboardCommand = new UserKeyboardCommand("{" + e.Key.ToString().ToUpper() + "}");
+                    break;
+
+                case Key.Space:
+                    keyboardCommand = new UserKeyboardCommand(" ");
+                    break;
+
+                case Key.Enter:
+                    keyboardCommand = new UserKeyboardCommand("{ENTER}");
                     break;
 
                 case Key.Back:
@@ -329,7 +363,7 @@ namespace RemoteDesktop
                 case Key.NumPad7:
                 case Key.NumPad8:
                 case Key.NumPad9:
-                    keyboardCommand = new UserKeyboardCommand(e.Key.ToString()[5].ToString());
+                    keyboardCommand = new UserKeyboardCommand(e.Key.ToString()[6].ToString());
                     break;
 
                 case Key.LeftCtrl:
@@ -347,9 +381,52 @@ namespace RemoteDesktop
                     keyboardCommand = new UserKeyboardCommand("%");
                     break;
 
-                case Key.LWin:
-                case Key.RWin:
-                    keyboardCommand = new UserKeyboardCommand("^{ESC}");
+                case Key.Oem3:
+                    keyboardCommand = new UserKeyboardCommand("`");
+                    break;
+
+                case Key.OemMinus:
+                    keyboardCommand = new UserKeyboardCommand("-");
+                    break;
+
+                case Key.OemPlus:
+                    keyboardCommand = new UserKeyboardCommand("=");
+                    break;
+
+                case Key.OemOpenBrackets:
+                    keyboardCommand = new UserKeyboardCommand("[");
+                    break;
+
+                case Key.Oem6:
+                    keyboardCommand = new UserKeyboardCommand("]");
+                    break;
+
+                case Key.Oem5:
+                    keyboardCommand = new UserKeyboardCommand(@"\");
+                    break;
+
+                case Key.Oem1:
+                    keyboardCommand = new UserKeyboardCommand(";");
+                    break;
+
+                case Key.OemQuotes:
+                    keyboardCommand = new UserKeyboardCommand("'");
+                    break;
+
+                case Key.OemComma:
+                    keyboardCommand = new UserKeyboardCommand(",");
+                    break;
+
+                case Key.OemPeriod:
+                    keyboardCommand = new UserKeyboardCommand(".");
+                    break;
+
+                case Key.OemQuestion:
+                    keyboardCommand = new UserKeyboardCommand("/");
+                    break;
+
+                case Key.Decimal:
+                    keyboardCommand = new UserKeyboardCommand(".");
                     break;
             }
 
@@ -377,6 +454,11 @@ namespace RemoteDesktop
                      (key != Key.LeftAlt) &&
                      (key != Key.RightAlt))
                 keyboardCommand = new UserKeyboardCommand("%" + keyboardCommand.Key);
+            //else if ((keyboardCommand != null) &&
+            //         (modifier == ModifierKeys.Windows) &&
+            //         (key != Key.LWin) &&
+            //         (key != Key.RWin))
+            //    keyboardCommand = new UserKeyboardCommand("");
 
             if (keyboardCommand != null)
             {
@@ -388,6 +470,29 @@ namespace RemoteDesktop
                 ms.Close();
 
                 clientSocket.Send(keyboardCommandBytes);
+            }
+        }
+
+        private void PictureBox_MouseMove(object sender, System.Windows.Forms.MouseEventArgs e)
+        {
+            Debug.WriteLine($"Mouse Down at: ({e.X},{e.Y})");
+
+            if ((e.X < 0) || (e.Y < 0))
+                return;
+
+            UserMouseCommand mouseCommand = new UserMouseCommand(e.X, e.Y, 0, MouseEventFlag.Move);
+
+            // This null check is unnecessary in formal edition, only useful when developing.
+            if (mouseCommand != null)
+            {
+                MemoryStream ms = new MemoryStream();
+
+                formatter.Serialize(ms, mouseCommand);
+
+                byte[] mouseCommandBytes = ms.GetBuffer();
+                ms.Close();
+
+                clientSocket.Send(mouseCommandBytes);
             }
         }
     }

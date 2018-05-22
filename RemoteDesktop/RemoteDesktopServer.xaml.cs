@@ -140,8 +140,15 @@ namespace RemoteDesktop
             // Get byte array of current screen capture.
             byte[] imageBytes = GetCurrentScreenCapture();
 
-            // Send screen capture.
-            clientSocket.Send(imageBytes);
+            try
+            {
+                // Send screen capture.
+                clientSocket.Send(imageBytes);
+            }
+            catch (SocketException)
+            {
+                SocketExceptionHandler();
+            }
         }
 
         /// <summary>
@@ -187,7 +194,7 @@ namespace RemoteDesktop
         /// <param name="e"></param>
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            //timer.Close();
+            timer.Close();
         }
 
         private void ExecuteCommand()
@@ -202,7 +209,6 @@ namespace RemoteDesktop
                 {
                     clientSocket.Close();
                     timer.Stop();
-                    timer.Close();
                     return;
                 }
 
@@ -220,10 +226,15 @@ namespace RemoteDesktop
             }
             catch (SocketException)
             {
-                clientCommand = "[<Close/>]";
-                clientSocket.Close();
-                timer.Stop();
+                SocketExceptionHandler();
             }
+        }
+
+        private void SocketExceptionHandler()
+        {
+            clientCommand = "[<Close/>]";
+            clientSocket.Close();
+            timer.Stop();
         }
     }
 }

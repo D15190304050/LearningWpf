@@ -199,6 +199,7 @@ namespace RemoteDesktop
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             timer.Close();
+            clientSocket.Close();
         }
 
         private void ExecuteCommand()

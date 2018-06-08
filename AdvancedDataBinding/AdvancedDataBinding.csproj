@@ -54,6 +54,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="CheckBoxList.xaml.cs">
+      <DependentUpon>CheckBoxList.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ImagePathConverter.cs" />
     <Compile Include="ListStyles.xaml.cs">
       <DependentUpon>ListStyles.xaml</DependentUpon>
@@ -69,6 +72,13 @@
     <Compile Include="ValueConverter.xaml.cs">
       <DependentUpon>ValueConverter.xaml</DependentUpon>
     </Compile>
+    <Compile Include="VariedStyles.xaml.cs">
+      <DependentUpon>VariedStyles.xaml</DependentUpon>
+    </Compile>
+    <Page Include="CheckBoxList.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="ListStyles.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -94,6 +104,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ValueConverter.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="VariedStyles.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

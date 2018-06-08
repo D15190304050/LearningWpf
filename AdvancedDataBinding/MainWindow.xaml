@@ -20,6 +20,8 @@
             <Button>MoreValueConverter</Button>
             <Button>ListStyles</Button>
             <Button>RadioButtonListStyle</Button>
+            <Button>CheckBoxList</Button>
+            <Button>VariedStyles</Button>
         </StackPanel>
     </Grid>
 </Window>

@@ -1,0 +1,23 @@
+﻿<Window x:Class="AlwaysOnline.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:AlwaysOnline"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="300">
+
+    <Window.Resources>
+        <Style TargetType="Button">
+            <Setter Property="Padding" Value="5" />
+            <Setter Property="Margin" Value="5,5,5,0" />
+        </Style>
+    </Window.Resources>
+
+    <Grid>
+        <StackPanel>
+            <Button Click="cmdStartServer_Click">AlwaysOnlineServer</Button>
+            <Button Click="cmdStartClient_Click">AlwaysOnlineClient</Button>
+        </StackPanel>
+    </Grid>
+</Window>

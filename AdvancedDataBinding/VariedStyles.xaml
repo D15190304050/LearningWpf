@@ -32,6 +32,11 @@
         </Grid.ColumnDefinitions>
 
         <Button Grid.Row="0" Grid.Column="0" Margin="7,7,7,0" Click="cmdGetProducts_Click">Get Products</Button>
-        
+
+        <ListBox Grid.Row="1" Margin="7,3,7,10" Name="lstProducts" HorizontalAlignment="Stretch" SnapsToDevicePixels="True">
+            <!--<ListBox.ItemContainerStyleSelector>
+                --><!--<local:>--><!--
+            </ListBox.ItemContainerStyleSelector>-->
+        </ListBox>
     </Grid>
 </Window>

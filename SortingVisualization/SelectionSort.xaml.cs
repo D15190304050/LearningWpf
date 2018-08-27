@@ -23,5 +23,15 @@ namespace SortingVisualization
         {
             InitializeComponent();
         }
+
+        private void Shuffle(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Sort(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

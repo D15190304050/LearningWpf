@@ -21,15 +21,23 @@ namespace SortingVisualization
     /// </summary>
     public partial class MainWindow : Window
     {
+        private Dictionary<string, string> algorithmNames;
+
         public MainWindow()
         {
+            algorithmNames = new Dictionary<string, string>
+            {
+                { "Selection Sort", "SelectionSort"}
+            };
+
             InitializeComponent();
         }
 
         private void ButtonClick(object sender, RoutedEventArgs e)
         {
             Button cmd = (Button) e.OriginalSource;
-            string windowName = cmd.Content.ToString().Replace(" ", "");
+            string windowName = cmd.Content.ToString();
+            windowName = algorithmNames[windowName];
 
             Type type = this.GetType();
             Assembly assembly = type.Assembly;

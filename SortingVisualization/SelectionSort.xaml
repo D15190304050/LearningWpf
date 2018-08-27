@@ -6,7 +6,29 @@
         xmlns:local="clr-namespace:SortingVisualization"
         mc:Ignorable="d"
         Title="SelectionSort" Height="450" Width="800">
+
+    <Window.Resources>
+        <Style TargetType="Button">
+            <Setter Property="Padding" Value="5" />
+            <Setter Property="FontFamily" Value="Cambria Math" />
+            <Setter Property="Margin" Value="0,0,10,10" />
+        </Style>
+    </Window.Resources>
+
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <Canvas Name="mainCanvas" Grid.Row="1">
+            
+        </Canvas>
+
+        <StackPanel Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Right">
+            <Button Click="Shuffle">Shuffle</Button>
+            <Button Click="Sort">Soft</Button>
+        </StackPanel>
     </Grid>
+    
 </Window>

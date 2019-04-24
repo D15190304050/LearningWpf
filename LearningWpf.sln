@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.27130.2026
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28803.202
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPF", "WPF\WPF.csproj", "{257701F6-771D-4B0B-B977-03CBFDE8D48D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SyntaxTest", "WPF\SyntaxTest.csproj", "{257701F6-771D-4B0B-B977-03CBFDE8D48D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommandBindings", "CommandBindings\CommandBindings.csproj", "{9ABE29C7-5A17-4FFA-BBF5-7233D334E650}"
 EndProject

@@ -49,6 +49,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BehaviorTest", "BehaviorTes
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LabelImage", "LabelImage\LabelImage.csproj", "{2B2245DD-2DFA-4D5B-96B4-4D2564434B1C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PixelTrajectoryAnnotator", "PixelTrajectoryAnnotator\PixelTrajectoryAnnotator.csproj", "{7F06E0CA-B5E2-423C-B910-6BB8DEFB0C81}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -147,6 +149,10 @@ Global
 		{2B2245DD-2DFA-4D5B-96B4-4D2564434B1C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2B2245DD-2DFA-4D5B-96B4-4D2564434B1C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2B2245DD-2DFA-4D5B-96B4-4D2564434B1C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7F06E0CA-B5E2-423C-B910-6BB8DEFB0C81}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7F06E0CA-B5E2-423C-B910-6BB8DEFB0C81}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7F06E0CA-B5E2-423C-B910-6BB8DEFB0C81}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7F06E0CA-B5E2-423C-B910-6BB8DEFB0C81}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

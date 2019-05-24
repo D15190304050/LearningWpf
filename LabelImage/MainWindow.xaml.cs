@@ -33,7 +33,7 @@ namespace LabelImage
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             configuration = (Configuration) mainGrid.DataContext;
-            file.FontSize = 40;
+            configuration.UIFontSize = 60;
         }
     }
 }

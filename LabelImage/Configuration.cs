@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,17 +9,13 @@ namespace LabelImage
 {
     public class Configuration
     {
-        private int uiFontSize;
-
-        public int UIFontSize
-        {
-            get { return uiFontSize; }
-            set { uiFontSize = value; }
-        }
+        [Bindable(true)]
+        [Category("Behavior")]
+        public int UIFontSize { get; set; }
 
         public Configuration()
         {
-            uiFontSize = 16;
+            this.UIFontSize = 16;
         }
     }
 }

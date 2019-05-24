@@ -65,8 +65,11 @@ namespace PixelTrajectoryAnnotator
             }
         }
 
-        public void Draw(Canvas canvas, double horizontalLength, double verticalLength)
+        public void Draw(Canvas canvas, double horizontalLength, double verticalLength, double pixelWidth, double pixelHeight)
         {
+            if (points.Count == 0)
+                return;
+
             int colorIndex = 0;
             
             foreach (TrajectorySegment trajectorySegment in trajectory)
@@ -82,8 +85,8 @@ namespace PixelTrajectoryAnnotator
                 PathFigure pathFigure = new PathFigure();
 
                 Point firstPoint = trajectorySegment.Points.First();
-                double firstPointX = firstPoint.X / 1920 * horizontalLength;
-                double firstPointY = firstPoint.Y / 1080 * verticalLength;
+                double firstPointX = firstPoint.X / pixelWidth * horizontalLength;
+                double firstPointY = firstPoint.Y / pixelHeight * verticalLength;
                 pathFigure.StartPoint = new Point(firstPointX, firstPointY);
                 PathSegmentCollection pathSegmentCollection = new PathSegmentCollection();
 
@@ -91,7 +94,7 @@ namespace PixelTrajectoryAnnotator
                 {
                     LineSegment newSegment = new LineSegment
                     {
-                        Point = new Point(point.X / 1920 * horizontalLength, point.Y / 1080 * verticalLength)
+                        Point = new Point(point.X / pixelWidth * horizontalLength, point.Y / pixelHeight * verticalLength)
                     };
                     pathSegmentCollection.Add(newSegment);
                 }
@@ -121,8 +124,8 @@ namespace PixelTrajectoryAnnotator
                 Foreground = System.Windows.Media.Brushes.Red,
                 FontSize = 16
             };
-            Canvas.SetLeft(textTrajectoryId, points.First.Value.X - 5);
-            Canvas.SetTop(textTrajectoryId, points.First.Value.Y - 5);
+            Canvas.SetLeft(textTrajectoryId, points.First.Value.X / pixelWidth * horizontalLength + 10);
+            Canvas.SetTop(textTrajectoryId, points.First.Value.Y / pixelHeight * verticalLength + 10);
             canvas.Children.Add(textTrajectoryId);
         }
 

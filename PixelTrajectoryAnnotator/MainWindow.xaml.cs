@@ -30,6 +30,10 @@ namespace PixelTrajectoryAnnotator
         private Trajectory currentTrajectory;
         private string saveDirectory;
 
+        public double CurrentBackgroundImagePixelWidth { get; private set; }
+
+        public double CurrentBackgroundImagePixelHeight { get; private set; }
+
         public MainWindow()
         {
             trajectoryFileNames = null;
@@ -58,7 +62,11 @@ namespace PixelTrajectoryAnnotator
             {
                 string fileName = openImageDialog.FileName;
 
-                backgroungImage.Source = new BitmapImage(new Uri(fileName, UriKind.Absolute));
+                BitmapImage image = new BitmapImage(new Uri(fileName, UriKind.Absolute));
+                backgroungImage.Source = image;
+
+                this.CurrentBackgroundImagePixelWidth = image.PixelWidth;
+                this.CurrentBackgroundImagePixelHeight = image.PixelHeight;
             }
         }
 
@@ -78,8 +86,10 @@ namespace PixelTrajectoryAnnotator
                 trajectoryFileNames = Directory.GetFiles(directoryName);
                 currentTrajectoryIndex = 0;
 
+                // Clear the existing trajectory before showing another trajectory.
+                imageCanvas.Children.Clear();
                 currentTrajectory = new Trajectory(trajectoryFileNames[currentTrajectoryIndex]);
-                currentTrajectory.Draw(imageCanvas, imageCanvas.ActualHeight * 16 / 9, imageCanvas.ActualHeight);
+                currentTrajectory.Draw(imageCanvas, imageCanvas.ActualHeight * 16 / 9, imageCanvas.ActualHeight, this.CurrentBackgroundImagePixelWidth, this.CurrentBackgroundImagePixelHeight);
             }
         }
 
@@ -87,9 +97,11 @@ namespace PixelTrajectoryAnnotator
         {
             if (currentTrajectoryIndex > 0)
             {
+                // Clear the existing trajectory before showing another trajectory.
+                imageCanvas.Children.Clear();
                 currentTrajectoryIndex--;
                 currentTrajectory = new Trajectory(trajectoryFileNames[currentTrajectoryIndex]);
-                currentTrajectory.Draw(imageCanvas, imageCanvas.ActualHeight * 16 / 9, imageCanvas.ActualHeight);
+                currentTrajectory.Draw(imageCanvas, imageCanvas.ActualHeight * 16 / 9, imageCanvas.ActualHeight, this.CurrentBackgroundImagePixelWidth, this.CurrentBackgroundImagePixelHeight);
             }
         }
 
@@ -97,9 +109,11 @@ namespace PixelTrajectoryAnnotator
         {
             if (currentTrajectoryIndex < trajectoryFileNames.Length - 1)
             {
+                // Clear the existing trajectory before showing another trajectory.
+                imageCanvas.Children.Clear();
                 currentTrajectoryIndex++;
                 currentTrajectory = new Trajectory(trajectoryFileNames[currentTrajectoryIndex]);
-                currentTrajectory.Draw(imageCanvas, imageCanvas.ActualHeight * 16 / 9, imageCanvas.ActualHeight);
+                currentTrajectory.Draw(imageCanvas, imageCanvas.ActualHeight * 16 / 9, imageCanvas.ActualHeight, this.CurrentBackgroundImagePixelWidth, this.CurrentBackgroundImagePixelHeight);
             }
         }
 

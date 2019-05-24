@@ -25,7 +25,7 @@
         </Grid.RowDefinitions>
 
         <Menu Grid.Row="0">
-            <MenuItem Name="file" FontSize="{Binding Path=UIFontSize, Mode=TwoWay}" Header="{x:Static properties:Resources.File}">
+            <MenuItem Name="file" FontSize="{Binding Path=UIFontSize}" Header="{x:Static properties:Resources.File}">
                 <MenuItem FontSize="{Binding Path=UIFontSize}" Header="{x:Static properties:Resources.OpenImage}" Command="ApplicationCommands.Open" />
                 <MenuItem FontSize="{Binding Path=UIFontSize}" Header="{x:Static properties:Resources.OpenDirectory}" />
                 <Separator />
@@ -64,5 +64,6 @@
                 <MenuItem FontSize="{Binding Path=UIFontSize}" Header="{x:Static properties:Resources.FitWindow}" />
             </MenuItem>
         </Menu>
+
     </Grid>
 </Window>

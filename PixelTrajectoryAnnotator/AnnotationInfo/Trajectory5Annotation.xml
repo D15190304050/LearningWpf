@@ -1,4 +1,4 @@
-<AnnotatedTrajectory TrajectoryId="5">
+<TrajectoryAnnotation TrajectoryId="5">
   <TrajectorySegment AnnotationInfo="无标注">
     <Point X="10" Y="10" FrameNumber="0" />
     <Point X="10" Y="20" FrameNumber="1" />
@@ -10,7 +10,7 @@
     <Point X="60" Y="60" FrameNumber="5" />
     <Point X="100" Y="150" FrameNumber="6" />
   </TrajectorySegment>
-  <TrajectorySegment AnnotationInfo="无标注">
+  <TrajectorySegment AnnotationInfo="2">
     <Point X="160" Y="160" FrameNumber="7" />
     <Point X="170" Y="170" FrameNumber="8" />
     <Point X="165" Y="180" FrameNumber="9" />
@@ -21,4 +21,4 @@
     <Point X="300" Y="280" FrameNumber="12" />
     <Point X="360" Y="350" FrameNumber="13" />
   </TrajectorySegment>
-</AnnotatedTrajectory>
+</TrajectoryAnnotation>

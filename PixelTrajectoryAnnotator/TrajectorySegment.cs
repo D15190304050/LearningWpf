@@ -33,8 +33,8 @@ namespace PixelTrajectoryAnnotator
             foreach (string pointString in pointDataArray)
             {
                 string[] coordinateStrings = pointString.Substring(1, pointString.Length - 2).Split(',');
-                int x = int.Parse(coordinateStrings[0]);
-                int y = int.Parse(coordinateStrings[1]);
+                double x = double.Parse(coordinateStrings[0]);
+                double y = double.Parse(coordinateStrings[1]);
                 points.AddLast(new Point(x, y));
             }
 

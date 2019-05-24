@@ -42,15 +42,17 @@ namespace PixelTrajectoryAnnotator
 
         private void cmdResetBackgroundImage_Click(object sender, RoutedEventArgs e)
         {
-            OpenFileDialog openImageDialog = new OpenFileDialog();
-            openImageDialog.Filter = "All Image Files|*.bmp;*.ico;*.gif;*.jpeg;*.jpg;*.png;*.tif;*.tiff|" +
-            "Windows Bitmap(*.bmp)|*.bmp|" +
-            "Windows Icon(*.ico)|*.ico|" +
-            "Graphics Interchange Format (*.gif)|(*.gif)|" +
-            "JPEG File Interchange Format (*.jpg)|*.jpg;*.jpeg|" +
-            "Portable Network Graphics (*.png)|*.png|" +
-            "Tag Image File Format (*.tif)|*.tif;*.tiff";
-            openImageDialog.Title = "选择图片文件";
+            OpenFileDialog openImageDialog = new OpenFileDialog
+            {
+                Filter = "All Image Files|*.bmp;*.ico;*.gif;*.jpeg;*.jpg;*.png;*.tif;*.tiff|" +
+                         "Windows Bitmap(*.bmp)|*.bmp|" +
+                         "Windows Icon(*.ico)|*.ico|" +
+                         "Graphics Interchange Format (*.gif)|(*.gif)|" +
+                         "JPEG File Interchange Format (*.jpg)|*.jpg;*.jpeg|" +
+                         "Portable Network Graphics (*.png)|*.png|" +
+                         "Tag Image File Format (*.tif)|*.tif;*.tiff",
+                Title = "选择图片文件"
+            };
 
             if (openImageDialog.ShowDialog() == true)
             {
@@ -62,9 +64,11 @@ namespace PixelTrajectoryAnnotator
 
         private void cmdResetTrajectoryDataDirectory_Click(object sender, RoutedEventArgs e)
         {
-            CommonOpenFileDialog openTrajectoryDataDirectoryDialog = new CommonOpenFileDialog();
-            openTrajectoryDataDirectoryDialog.IsFolderPicker = true;
-            openTrajectoryDataDirectoryDialog.Title = "打开轨迹数据文件夹";
+            CommonOpenFileDialog openTrajectoryDataDirectoryDialog = new CommonOpenFileDialog
+            {
+                IsFolderPicker = true,
+                Title = "打开轨迹数据文件夹"
+            };
             CommonFileDialogResult result = openTrajectoryDataDirectoryDialog.ShowDialog();
 
             if (result == CommonFileDialogResult.Ok)
@@ -113,9 +117,11 @@ namespace PixelTrajectoryAnnotator
             if (!string.IsNullOrEmpty(saveDirectory))
                 SaveAnnotations();
 
-            CommonOpenFileDialog saveAnnotationDirectoryDialog = new CommonOpenFileDialog();
-            saveAnnotationDirectoryDialog.IsFolderPicker = true;
-            saveAnnotationDirectoryDialog.Title = "选择保存标注结果的文件夹";
+            CommonOpenFileDialog saveAnnotationDirectoryDialog = new CommonOpenFileDialog
+            {
+                IsFolderPicker = true,
+                Title = "选择保存标注结果的文件夹"
+            };
             CommonFileDialogResult result = saveAnnotationDirectoryDialog.ShowDialog();
 
             if (result == CommonFileDialogResult.Ok)

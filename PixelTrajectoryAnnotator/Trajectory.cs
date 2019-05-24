@@ -71,9 +71,11 @@ namespace PixelTrajectoryAnnotator
             
             foreach (TrajectorySegment trajectorySegment in trajectory)
             {
-                System.Windows.Shapes.Path path = new System.Windows.Shapes.Path();
-                path.Stroke = Colors[colorIndex % ColorCount];
-                path.StrokeThickness = 4;
+                System.Windows.Shapes.Path path = new System.Windows.Shapes.Path
+                {
+                    Stroke = Colors[colorIndex % ColorCount],
+                    StrokeThickness = 4
+                };
                 colorIndex++;
 
                 PathGeometry pathGeometry = new PathGeometry();
@@ -87,8 +89,10 @@ namespace PixelTrajectoryAnnotator
 
                 foreach (Point point in trajectorySegment.Points)
                 {
-                    LineSegment newSegment = new LineSegment();
-                    newSegment.Point = new Point(point.X / 1920 * horizontalLength, point.Y / 1080 * verticalLength);
+                    LineSegment newSegment = new LineSegment
+                    {
+                        Point = new Point(point.X / 1920 * horizontalLength, point.Y / 1080 * verticalLength)
+                    };
                     pathSegmentCollection.Add(newSegment);
                 }
 
@@ -110,11 +114,13 @@ namespace PixelTrajectoryAnnotator
                 canvas.Children.Add(path);
             }
 
-            
-            TextBlock textTrajectoryId = new TextBlock();
-            textTrajectoryId.Text = $"Trajectory ID: {this.TrajectoryId}";
-            textTrajectoryId.Foreground = System.Windows.Media.Brushes.Red;
-            textTrajectoryId.FontSize = 16;
+
+            TextBlock textTrajectoryId = new TextBlock
+            {
+                Text = $"Trajectory ID: {this.TrajectoryId}",
+                Foreground = System.Windows.Media.Brushes.Red,
+                FontSize = 16
+            };
             Canvas.SetLeft(textTrajectoryId, points.First.Value.X - 5);
             Canvas.SetTop(textTrajectoryId, points.First.Value.Y - 5);
             canvas.Children.Add(textTrajectoryId);

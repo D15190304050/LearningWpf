@@ -18,7 +18,7 @@ namespace PixelTrajectoryAnnotator
 
         public string AnnotationInfo { get; set; }
 
-        private int startFrameNumber;
+        private readonly int startFrameNumber;
 
 
         public TrajectorySegment(string pointData)

@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:LocalWpf"
+        xmlns:local="clr-namespace:PixelTrajectoryAnnotator"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800"
         >
@@ -24,9 +24,7 @@
             <Grid>
                 <Image Name="backgroungImage" Stretch="Uniform"
                        HorizontalAlignment="Left" VerticalAlignment="Top" />
-                <Canvas Name="imageCanvas">
-                    <Line Name="line" Stroke="Black" StrokeThickness="1" X1="0" Y1="0" X2="{Binding ElementName=imageCanvas, Path=ActualWidth}" Y2="{Binding ElementName=imageCanvas, Path=ActualHeight}" />
-                </Canvas>
+                <Canvas Name="imageCanvas" />
             </Grid>
         </Border>
 

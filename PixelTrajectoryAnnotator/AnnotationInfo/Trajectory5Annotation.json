@@ -1,0 +1,94 @@
+{
+  "Trajectory": [
+    {
+      "AnnotationInfo": "无标注",
+      "Points": [
+        {
+          "X": 10.0,
+          "Y": 10.0,
+          "FrameNumber": 0
+        },
+        {
+          "X": 10.0,
+          "Y": 20.0,
+          "FrameNumber": 1
+        },
+        {
+          "X": 15.0,
+          "Y": 30.0,
+          "FrameNumber": 2
+        },
+        {
+          "X": 20.0,
+          "Y": 25.0,
+          "FrameNumber": 3
+        }
+      ]
+    },
+    {
+      "AnnotationInfo": "无标注",
+      "Points": [
+        {
+          "X": 40.0,
+          "Y": 40.0,
+          "FrameNumber": 4
+        },
+        {
+          "X": 60.0,
+          "Y": 60.0,
+          "FrameNumber": 5
+        },
+        {
+          "X": 100.0,
+          "Y": 150.0,
+          "FrameNumber": 6
+        }
+      ]
+    },
+    {
+      "AnnotationInfo": "无标注",
+      "Points": [
+        {
+          "X": 160.0,
+          "Y": 160.0,
+          "FrameNumber": 7
+        },
+        {
+          "X": 170.0,
+          "Y": 170.0,
+          "FrameNumber": 8
+        },
+        {
+          "X": 165.0,
+          "Y": 180.0,
+          "FrameNumber": 9
+        }
+      ]
+    },
+    {
+      "AnnotationInfo": "1",
+      "Points": [
+        {
+          "X": 200.0,
+          "Y": 200.0,
+          "FrameNumber": 10
+        },
+        {
+          "X": 240.0,
+          "Y": 250.0,
+          "FrameNumber": 11
+        },
+        {
+          "X": 300.0,
+          "Y": 280.0,
+          "FrameNumber": 12
+        },
+        {
+          "X": 360.0,
+          "Y": 350.0,
+          "FrameNumber": 13
+        }
+      ]
+    }
+  ]
+}

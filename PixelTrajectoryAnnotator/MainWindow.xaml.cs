@@ -14,7 +14,9 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.IO;
 using System.Windows.Forms;
+using Microsoft.WindowsAPICodePack.Dialogs;
 using OpenFileDialog = Microsoft.Win32.OpenFileDialog;
+using MessageBox = System.Windows.MessageBox;
 
 namespace PixelTrajectoryAnnotator
 {
@@ -26,12 +28,14 @@ namespace PixelTrajectoryAnnotator
         private string[] trajectoryFileNames;
         private int currentTrajectoryIndex;
         private Trajectory currentTrajectory;
+        private string saveDirectory;
 
         public MainWindow()
         {
             trajectoryFileNames = null;
             currentTrajectoryIndex = 0;
             currentTrajectory = null;
+            saveDirectory = null;
 
             InitializeComponent();
         }
@@ -58,15 +62,20 @@ namespace PixelTrajectoryAnnotator
 
         private void cmdResetTrajectoryDataDirectory_Click(object sender, RoutedEventArgs e)
         {
-            FolderBrowserDialog openTrajectoryDataDirectoryDialog = new FolderBrowserDialog();
-            DialogResult result = openTrajectoryDataDirectoryDialog.ShowDialog();
-            if (result == System.Windows.Forms.DialogResult.OK || result == System.Windows.Forms.DialogResult.Yes)
+            CommonOpenFileDialog openTrajectoryDataDirectoryDialog = new CommonOpenFileDialog();
+            openTrajectoryDataDirectoryDialog.IsFolderPicker = true;
+            openTrajectoryDataDirectoryDialog.Title = "打开轨迹数据文件夹";
+            CommonFileDialogResult result = openTrajectoryDataDirectoryDialog.ShowDialog();
+
+            if (result == CommonFileDialogResult.Ok)
             {
-                string directoryName = openTrajectoryDataDirectoryDialog.SelectedPath;
-                System.Windows.MessageBox.Show(directoryName);
+                string directoryName = openTrajectoryDataDirectoryDialog.FileName;
 
                 trajectoryFileNames = Directory.GetFiles(directoryName);
                 currentTrajectoryIndex = 0;
+
+                currentTrajectory = new Trajectory(trajectoryFileNames[currentTrajectoryIndex]);
+                currentTrajectory.Draw(imageCanvas, imageCanvas.ActualHeight * 16 / 9, imageCanvas.ActualHeight);
             }
         }
 
@@ -92,17 +101,43 @@ namespace PixelTrajectoryAnnotator
 
         private void cmdSaveAnnotation_Click(object sender, RoutedEventArgs e)
         {
-
+            if (string.IsNullOrEmpty(saveDirectory))
+                MessageBox.Show("请先选择保存标注结果的文件夹");
+            else
+                SaveAnnotations();
         }
 
         private void cmdSetSavePath_Click(object sender, RoutedEventArgs e)
         {
+            // Save current annotation result before start to annotate another dataset.
+            if (!string.IsNullOrEmpty(saveDirectory))
+                SaveAnnotations();
 
+            CommonOpenFileDialog saveAnnotationDirectoryDialog = new CommonOpenFileDialog();
+            saveAnnotationDirectoryDialog.IsFolderPicker = true;
+            saveAnnotationDirectoryDialog.Title = "选择保存标注结果的文件夹";
+            CommonFileDialogResult result = saveAnnotationDirectoryDialog.ShowDialog();
+
+            if (result == CommonFileDialogResult.Ok)
+                saveDirectory = saveAnnotationDirectoryDialog.FileName;
         }
 
         private void SaveAnnotations()
         {
-            
+            // Save as text file.
+            string fileName = "Trajectory" + currentTrajectory.TrajectoryId + "Annotation.txt";
+            fileName = System.IO.Path.Combine(saveDirectory, fileName);
+            currentTrajectory.SaveAsText(fileName);
+
+            // Save as JSON file.
+            fileName = "Trajectory" + currentTrajectory.TrajectoryId + "Annotation.json";
+            fileName = System.IO.Path.Combine(saveDirectory, fileName);
+            currentTrajectory.SaveAsJson(fileName);
+
+            // Save as XML file.
+            fileName = "Trajectory" + currentTrajectory.TrajectoryId + "Annotation.xml";
+            fileName = System.IO.Path.Combine(saveDirectory, fileName);
+            currentTrajectory.SaveAsXml(fileName);
         }
     }
 }

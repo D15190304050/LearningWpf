@@ -45,7 +45,7 @@ namespace PixelTrajectoryAnnotator
 
         public Trajectory(string trajectoryDataFileName)
         {
-            int indexOfFileName = trajectoryDataFileName.LastIndexOf(FileNamePrefix);
+            int indexOfFileName = trajectoryDataFileName.LastIndexOf(FileNamePrefix, StringComparison.Ordinal);
             int indexOfLastDot = trajectoryDataFileName.LastIndexOf('.');
             int idStartIndex = indexOfFileName + FileNamePrefix.Length;
 
@@ -103,6 +103,7 @@ namespace PixelTrajectoryAnnotator
                 pathGeometry.Figures.Add(pathFigure);
 
                 path.Data = pathGeometry;
+                path.ToolTip = trajectorySegment.AnnotationInfo;
 
                 path.MouseDown += (sender, e) =>
                 {

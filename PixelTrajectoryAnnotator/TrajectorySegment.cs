@@ -23,7 +23,14 @@ namespace PixelTrajectoryAnnotator
 
         public TrajectorySegment(string pointData)
         {
-            this.AnnotationInfo = "无标注";
+            int indexOfColon = pointData.IndexOf(':');
+            if (indexOfColon > -1)
+            {
+                this.AnnotationInfo = pointData.Substring(0, indexOfColon);
+                pointData = pointData.Substring(indexOfColon + 2);
+            }
+            else
+                this.AnnotationInfo = "无标注";
 
             if (pointData.EndsWith(";"))
                 pointData = pointData.Substring(0, pointData.Length - 1);

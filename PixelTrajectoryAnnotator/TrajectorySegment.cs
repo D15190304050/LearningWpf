@@ -20,7 +20,6 @@ namespace PixelTrajectoryAnnotator
 
         private readonly int startFrameNumber;
 
-
         public TrajectorySegment(string pointData)
         {
             int indexOfColon = pointData.IndexOf(':');

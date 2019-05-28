@@ -71,9 +71,16 @@
     <Compile Include="AnnotationWindow.xaml.cs">
       <DependentUpon>AnnotationWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="GridLineWindow.xaml.cs">
+      <DependentUpon>GridLineWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Trajectory.cs" />
     <Compile Include="TrajectorySegment.cs" />
     <Page Include="AnnotationWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GridLineWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

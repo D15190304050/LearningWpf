@@ -87,6 +87,18 @@ namespace PixelTrajectoryAnnotator
                 Point firstPoint = trajectorySegment.Points.First();
                 double firstPointX = firstPoint.X / pixelWidth * horizontalLength;
                 double firstPointY = firstPoint.Y / pixelHeight * verticalLength;
+
+                Rectangle startPoint = new Rectangle { Width = 20, Height = 20, Fill = Brushes.BlueViolet };
+                Canvas.SetLeft(startPoint, firstPointX - 10);
+                Canvas.SetTop(startPoint, firstPointY - 10);
+                canvas.Children.Add(startPoint);
+
+                Point lastPoint = trajectorySegment.Points.Last();
+                Ellipse endPoint = new Ellipse { Width = 20, Height = 20, Fill = Brushes.Orange };
+                Canvas.SetLeft(endPoint, lastPoint.X / pixelWidth * horizontalLength - 10);
+                Canvas.SetTop(endPoint, lastPoint.Y / pixelHeight * verticalLength - 10);
+                canvas.Children.Add(endPoint);
+
                 pathFigure.StartPoint = new Point(firstPointX, firstPointY);
                 PathSegmentCollection pathSegmentCollection = new PathSegmentCollection();
 

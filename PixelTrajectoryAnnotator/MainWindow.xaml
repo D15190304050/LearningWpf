@@ -24,7 +24,8 @@
             <Grid>
                 <Image Name="backgroungImage" Stretch="Uniform"
                        HorizontalAlignment="Left" VerticalAlignment="Top" />
-                <Canvas Name="imageCanvas" />
+                <Canvas Name="imageCanvas">
+                </Canvas>
             </Grid>
         </Border>
 

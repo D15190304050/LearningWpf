@@ -7,16 +7,11 @@ using System.Windows.Input;
 
 namespace LabelImage
 {
-    public class ZoomInCommand : ICommand
+    public class ZoomOutCommand : ICommand
     {
-
-        public ZoomInCommand()
-        {
-        }
-
         public bool CanExecute(object parameter)
         {
-            return App.CurrentZoomFactor >= App.MaxZoomFactor;
+            return App.CurrentZoomFactor <= App.MinZoomFactor;
         }
 
         public void Execute(object parameter)

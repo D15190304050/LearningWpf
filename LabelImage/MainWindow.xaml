@@ -6,15 +6,11 @@
         xmlns:local="clr-namespace:LabelImage"
         xmlns:properties="clr-namespace:LabelImage.Properties"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800"
+        Title="Label Image" Height="450" Width="800"
         Loaded="Window_Loaded">
 
     
     <Window.Resources>
-        <!--<Style TargetType="MenuItem">
-            <Setter Property="FontSize" Value="{Binding }" />
-        </Style>-->
-
         <local:Configuration UIFontSize="16" x:Key="MenuStyle" />
     </Window.Resources>
 

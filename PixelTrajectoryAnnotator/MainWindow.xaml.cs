@@ -89,7 +89,7 @@ namespace PixelTrajectoryAnnotator
                 // Clear the existing trajectory before showing another trajectory.
                 imageCanvas.Children.Clear();
                 currentTrajectory = new Trajectory(trajectoryFileNames[currentTrajectoryIndex]);
-                currentTrajectory.Draw(imageCanvas, imageCanvas.ActualHeight * 16 / 9, imageCanvas.ActualHeight, this.CurrentBackgroundImagePixelWidth, this.CurrentBackgroundImagePixelHeight);
+                currentTrajectory.Draw(imageCanvas, imageCanvas.ActualHeight * 720 / 576, imageCanvas.ActualHeight, this.CurrentBackgroundImagePixelWidth, this.CurrentBackgroundImagePixelHeight);
             }
         }
 
@@ -101,7 +101,7 @@ namespace PixelTrajectoryAnnotator
                 imageCanvas.Children.Clear();
                 currentTrajectoryIndex--;
                 currentTrajectory = new Trajectory(trajectoryFileNames[currentTrajectoryIndex]);
-                currentTrajectory.Draw(imageCanvas, imageCanvas.ActualHeight * 16 / 9, imageCanvas.ActualHeight, this.CurrentBackgroundImagePixelWidth, this.CurrentBackgroundImagePixelHeight);
+                currentTrajectory.Draw(imageCanvas, imageCanvas.ActualHeight * 720 / 576, imageCanvas.ActualHeight, this.CurrentBackgroundImagePixelWidth, this.CurrentBackgroundImagePixelHeight);
             }
         }
 
@@ -113,7 +113,7 @@ namespace PixelTrajectoryAnnotator
                 imageCanvas.Children.Clear();
                 currentTrajectoryIndex++;
                 currentTrajectory = new Trajectory(trajectoryFileNames[currentTrajectoryIndex]);
-                currentTrajectory.Draw(imageCanvas, imageCanvas.ActualHeight * 16 / 9, imageCanvas.ActualHeight, this.CurrentBackgroundImagePixelWidth, this.CurrentBackgroundImagePixelHeight);
+                currentTrajectory.Draw(imageCanvas, imageCanvas.ActualHeight * 720 / 576, imageCanvas.ActualHeight, this.CurrentBackgroundImagePixelWidth, this.CurrentBackgroundImagePixelHeight);
             }
         }
 

@@ -13,5 +13,15 @@ namespace LabelImage
     /// </summary>
     public partial class App : Application
     {
+        public const double MaxZoomFactor = 3;
+        public const double MinZoomFactor = 0.1;
+
+        public static double CurrentZoomFactor { get; set; }
+
+        static App()
+        {
+            App.CurrentZoomFactor = 1;
+
+        }
     }
 }

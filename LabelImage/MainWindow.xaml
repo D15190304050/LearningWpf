@@ -29,7 +29,7 @@
                 <MenuItem FontSize="{Binding Path=UIFontSize}" FontFamily="{Binding Path=UIFontFamily}" Header="{x:Static properties:Resources.OpenAnnotation}" />
                 <MenuItem FontSize="{Binding Path=UIFontSize}" FontFamily="{Binding Path=UIFontFamily}" Header="{x:Static properties:Resources.OpenRecent}" />
                 <MenuItem FontSize="{Binding Path=UIFontSize}" FontFamily="{Binding Path=UIFontFamily}" Header="{x:Static properties:Resources.SaveAnnotation}" Command="ApplicationCommands.Save" />
-                <MenuItem FontSize="{Binding Path=UIFontSize}" FontFamily="{Binding Path=UIFontFamily}" Header="{x:Static properties:Resources.SaveAnnotatedImage}" Command="ApplicationCommands.SaveAs" />
+                <MenuItem FontSize="{Binding Path=UIFontSize}" FontFamily="{Binding Path=UIFontFamily}" Header="{x:Static properties:Resources.SaveAnnotatedImage}" Command="local:LabelCommands.SaveAnnotatedImage" />
                 <Separator />
                 <MenuItem FontSize="{Binding Path=UIFontSize}" FontFamily="{Binding Path=UIFontFamily}" Header="{x:Static properties:Resources.ResetCurrentImage}" />
                 <MenuItem FontSize="{Binding Path=UIFontSize}" FontFamily="{Binding Path=UIFontFamily}" Header="{x:Static properties:Resources.CloseImage}" />
@@ -51,10 +51,13 @@
                 <MenuItem FontSize="{Binding Path=UIFontSize}" FontFamily="{Binding Path=UIFontFamily}" Header="{x:Static properties:Resources.SingleClassMode}" />
                 <MenuItem FontSize="{Binding Path=UIFontSize}" FontFamily="{Binding Path=UIFontFamily}" Header="{x:Static properties:Resources.ShowLabels}" />
                 <Separator />
+                <MenuItem FontSize="{Binding Path=UIFontSize}" FontFamily="{Binding Path=UIFontFamily}" Header="{x:Static properties:Resources.PrevisouImage}" Command="local:LabelCommands.PreviousImage" />
+                <MenuItem FontSize="{Binding Path=UIFontSize}" FontFamily="{Binding Path=UIFontFamily}" Header="{x:Static properties:Resources.NextImage}" Command="local:LabelCommands.NextImage" />
+                <Separator />
                 <MenuItem FontSize="{Binding Path=UIFontSize}" FontFamily="{Binding Path=UIFontFamily}" Header="{x:Static properties:Resources.HideRectangleBox}" />
                 <Separator />
-                <MenuItem FontSize="{Binding Path=UIFontSize}" FontFamily="{Binding Path=UIFontFamily}" Header="{x:Static properties:Resources.ZoomIn}" />
-                <MenuItem FontSize="{Binding Path=UIFontSize}" FontFamily="{Binding Path=UIFontFamily}" Header="{x:Static properties:Resources.ZoomOut}" />
+                <MenuItem FontSize="{Binding Path=UIFontSize}" FontFamily="{Binding Path=UIFontFamily}" Header="{x:Static properties:Resources.ZoomIn}" Command="local:LabelCommands.ZoomIn" />
+                <MenuItem FontSize="{Binding Path=UIFontSize}" FontFamily="{Binding Path=UIFontFamily}" Header="{x:Static properties:Resources.ZoomOut}" Command="local:LabelCommands.ZoomOut" />
                 <MenuItem FontSize="{Binding Path=UIFontSize}" FontFamily="{Binding Path=UIFontFamily}" Header="{x:Static properties:Resources.OriginalSize}" />
                 <Separator />
                 <MenuItem FontSize="{Binding Path=UIFontSize}" FontFamily="{Binding Path=UIFontFamily}" Header="{x:Static properties:Resources.FitWindow}" />

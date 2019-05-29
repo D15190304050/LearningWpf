@@ -25,6 +25,14 @@ namespace LabelImage
             inputs = new InputGestureCollection();
             inputs.Add(new KeyGesture(Key.S, ModifierKeys.Control | ModifierKeys.Shift, "Ctrl+Shift+S"));
             SaveAnnotatedImage = new RoutedUICommand(Properties.Resources.SaveAnnotatedImage, "SaveAnnotatedImage", typeof(LabelCommands), inputs);
+
+            inputs = new InputGestureCollection();
+            inputs.Add(new KeyGesture(Key.R, ModifierKeys.Control, "Ctrl+R"));
+            ResetCurrentImage = new RoutedUICommand(Properties.Resources.ResetCurrentImage, "ResetCurrentImage", typeof(LabelCommands), inputs);
+
+            inputs = new InputGestureCollection();
+            inputs.Add(new KeyGesture(Key.W, ModifierKeys.Control, "Ctrl+W"));
+            CloseImage = new RoutedUICommand(Properties.Resources.CloseImage, "CloseImage", typeof(LabelCommands), inputs);
         }
 
         public static RoutedUICommand ZoomIn { get; }
@@ -35,5 +43,8 @@ namespace LabelImage
         public static RoutedUICommand NextImage { get; }
 
         public static RoutedUICommand SaveAnnotatedImage { get; }
+
+        public static RoutedUICommand ResetCurrentImage { get; }
+        public static RoutedUICommand CloseImage { get; }
     }
 }

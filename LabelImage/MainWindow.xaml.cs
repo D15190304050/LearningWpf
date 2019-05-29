@@ -25,9 +25,6 @@ namespace LabelImage
         public MainWindow()
         {
             InitializeComponent();
-
-            
-            //NavigationCommands
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)

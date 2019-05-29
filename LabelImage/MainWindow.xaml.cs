@@ -33,7 +33,9 @@ namespace LabelImage
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             configuration = (Configuration) mainGrid.DataContext;
-            configuration.UIFontSize = 60;
+            ApplicationContext.Configuration = configuration;
+            //configuration.UIFontSize = 40;
+            //configuration.UIFontFamily = new FontFamily("Microsoft Yahei Mono");
         }
     }
 }

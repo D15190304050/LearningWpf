@@ -11,7 +11,7 @@
 
     
     <Window.Resources>
-        <local:Configuration UIFontSize="16" x:Key="MenuStyle" />
+        <local:Configuration x:Key="MenuStyle" />
     </Window.Resources>
 
     <Grid Name="mainGrid" DataContext="{StaticResource ResourceKey=MenuStyle}">
@@ -21,43 +21,43 @@
         </Grid.RowDefinitions>
 
         <Menu Grid.Row="0">
-            <MenuItem Name="file" FontSize="{Binding Path=UIFontSize}" Header="{x:Static properties:Resources.File}">
-                <MenuItem FontSize="{Binding Path=UIFontSize}" Header="{x:Static properties:Resources.OpenImage}" Command="ApplicationCommands.Open" />
-                <MenuItem FontSize="{Binding Path=UIFontSize}" Header="{x:Static properties:Resources.OpenDirectory}" />
+            <MenuItem FontSize="{Binding Path=UIFontSize}" FontFamily="{Binding Path=UIFontFamily}" Header="{x:Static properties:Resources.File}">
+                <MenuItem FontSize="{Binding Path=UIFontSize}" FontFamily="{Binding Path=UIFontFamily}" Header="{x:Static properties:Resources.OpenImage}" Command="ApplicationCommands.Open" />
+                <MenuItem FontSize="{Binding Path=UIFontSize}" FontFamily="{Binding Path=UIFontFamily}" Header="{x:Static properties:Resources.OpenDirectory}" />
                 <Separator />
-                <MenuItem FontSize="{Binding Path=UIFontSize}" Header="{x:Static properties:Resources.ChangeSaveDirectory}" />
-                <MenuItem FontSize="{Binding Path=UIFontSize}" Header="{x:Static properties:Resources.OpenAnnotation}" />
-                <MenuItem FontSize="{Binding Path=UIFontSize}" Header="{x:Static properties:Resources.OpenRecent}" />
-                <MenuItem FontSize="{Binding Path=UIFontSize}" Header="{x:Static properties:Resources.SaveAnnotation}" Command="ApplicationCommands.Save" />
-                <MenuItem FontSize="{Binding Path=UIFontSize}" Header="{x:Static properties:Resources.SaveAnnotatedImage}" Command="ApplicationCommands.SaveAs" />
+                <MenuItem FontSize="{Binding Path=UIFontSize}" FontFamily="{Binding Path=UIFontFamily}" Header="{x:Static properties:Resources.ChangeSaveDirectory}" />
+                <MenuItem FontSize="{Binding Path=UIFontSize}" FontFamily="{Binding Path=UIFontFamily}" Header="{x:Static properties:Resources.OpenAnnotation}" />
+                <MenuItem FontSize="{Binding Path=UIFontSize}" FontFamily="{Binding Path=UIFontFamily}" Header="{x:Static properties:Resources.OpenRecent}" />
+                <MenuItem FontSize="{Binding Path=UIFontSize}" FontFamily="{Binding Path=UIFontFamily}" Header="{x:Static properties:Resources.SaveAnnotation}" Command="ApplicationCommands.Save" />
+                <MenuItem FontSize="{Binding Path=UIFontSize}" FontFamily="{Binding Path=UIFontFamily}" Header="{x:Static properties:Resources.SaveAnnotatedImage}" Command="ApplicationCommands.SaveAs" />
                 <Separator />
-                <MenuItem FontSize="{Binding Path=UIFontSize}" Header="{x:Static properties:Resources.ResetCurrentImage}" />
-                <MenuItem FontSize="{Binding Path=UIFontSize}" Header="{x:Static properties:Resources.CloseImage}" />
-                <MenuItem FontSize="{Binding Path=UIFontSize}" Header="{x:Static properties:Resources.Close}" Command="ApplicationCommands.Close" />
+                <MenuItem FontSize="{Binding Path=UIFontSize}" FontFamily="{Binding Path=UIFontFamily}" Header="{x:Static properties:Resources.ResetCurrentImage}" />
+                <MenuItem FontSize="{Binding Path=UIFontSize}" FontFamily="{Binding Path=UIFontFamily}" Header="{x:Static properties:Resources.CloseImage}" />
+                <MenuItem FontSize="{Binding Path=UIFontSize}" FontFamily="{Binding Path=UIFontFamily}" Header="{x:Static properties:Resources.Close}" Command="ApplicationCommands.Close" />
             </MenuItem>
 
-            <MenuItem FontSize="{Binding Path=UIFontSize}" Header="{x:Static properties:Resources.Edit}">
-                <MenuItem FontSize="{Binding Path=UIFontSize}" Header="{x:Static properties:Resources.CreateRectangleBox}" />
-                <MenuItem FontSize="{Binding Path=UIFontSize}" Header="{x:Static properties:Resources.EditLabel}" />
-                <MenuItem FontSize="{Binding Path=UIFontSize}" Header="{x:Static properties:Resources.DuplicateRectangleBox}" />
-                <MenuItem FontSize="{Binding Path=UIFontSize}" Header="{x:Static properties:Resources.DeleteRectangleBox}" />
+            <MenuItem FontSize="{Binding Path=UIFontSize}" FontFamily="{Binding Path=UIFontFamily}" Header="{x:Static properties:Resources.Edit}">
+                <MenuItem FontSize="{Binding Path=UIFontSize}" FontFamily="{Binding Path=UIFontFamily}" Header="{x:Static properties:Resources.CreateRectangleBox}" />
+                <MenuItem FontSize="{Binding Path=UIFontSize}" FontFamily="{Binding Path=UIFontFamily}" Header="{x:Static properties:Resources.EditLabel}" />
+                <MenuItem FontSize="{Binding Path=UIFontSize}" FontFamily="{Binding Path=UIFontFamily}" Header="{x:Static properties:Resources.DuplicateRectangleBox}" />
+                <MenuItem FontSize="{Binding Path=UIFontSize}" FontFamily="{Binding Path=UIFontFamily}" Header="{x:Static properties:Resources.DeleteRectangleBox}" />
                 <Separator />
-                <MenuItem FontSize="{Binding Path=UIFontSize}" Header="{x:Static properties:Resources.BoxLineColor}" />
-                <MenuItem FontSize="{Binding Path=UIFontSize}" Header="{x:Static properties:Resources.DrawSquare}" />
+                <MenuItem FontSize="{Binding Path=UIFontSize}" FontFamily="{Binding Path=UIFontFamily}" Header="{x:Static properties:Resources.BoxLineColor}" />
+                <MenuItem FontSize="{Binding Path=UIFontSize}" FontFamily="{Binding Path=UIFontFamily}" Header="{x:Static properties:Resources.DrawSquare}" />
             </MenuItem>
 
-            <MenuItem FontSize="{Binding Path=UIFontSize}" Header="{x:Static properties:Resources.View}">
-                <MenuItem FontSize="{Binding Path=UIFontSize}" Header="{x:Static properties:Resources.AutoSaveMode}" />
-                <MenuItem FontSize="{Binding Path=UIFontSize}" Header="{x:Static properties:Resources.SingleClassMode}" />
-                <MenuItem FontSize="{Binding Path=UIFontSize}" Header="{x:Static properties:Resources.ShowLabels}" />
+            <MenuItem FontSize="{Binding Path=UIFontSize}" FontFamily="{Binding Path=UIFontFamily}" Header="{x:Static properties:Resources.View}">
+                <MenuItem FontSize="{Binding Path=UIFontSize}" FontFamily="{Binding Path=UIFontFamily}" Header="{x:Static properties:Resources.AutoSaveMode}" />
+                <MenuItem FontSize="{Binding Path=UIFontSize}" FontFamily="{Binding Path=UIFontFamily}" Header="{x:Static properties:Resources.SingleClassMode}" />
+                <MenuItem FontSize="{Binding Path=UIFontSize}" FontFamily="{Binding Path=UIFontFamily}" Header="{x:Static properties:Resources.ShowLabels}" />
                 <Separator />
-                <MenuItem FontSize="{Binding Path=UIFontSize}" Header="{x:Static properties:Resources.HideRectangleBox}" />
+                <MenuItem FontSize="{Binding Path=UIFontSize}" FontFamily="{Binding Path=UIFontFamily}" Header="{x:Static properties:Resources.HideRectangleBox}" />
                 <Separator />
-                <MenuItem FontSize="{Binding Path=UIFontSize}" Header="{x:Static properties:Resources.ZoomIn}" />
-                <MenuItem FontSize="{Binding Path=UIFontSize}" Header="{x:Static properties:Resources.ZoomOut}" />
-                <MenuItem FontSize="{Binding Path=UIFontSize}" Header="{x:Static properties:Resources.OriginalSize}" />
+                <MenuItem FontSize="{Binding Path=UIFontSize}" FontFamily="{Binding Path=UIFontFamily}" Header="{x:Static properties:Resources.ZoomIn}" />
+                <MenuItem FontSize="{Binding Path=UIFontSize}" FontFamily="{Binding Path=UIFontFamily}" Header="{x:Static properties:Resources.ZoomOut}" />
+                <MenuItem FontSize="{Binding Path=UIFontSize}" FontFamily="{Binding Path=UIFontFamily}" Header="{x:Static properties:Resources.OriginalSize}" />
                 <Separator />
-                <MenuItem FontSize="{Binding Path=UIFontSize}" Header="{x:Static properties:Resources.FitWindow}" />
+                <MenuItem FontSize="{Binding Path=UIFontSize}" FontFamily="{Binding Path=UIFontFamily}" Header="{x:Static properties:Resources.FitWindow}" />
             </MenuItem>
         </Menu>
 

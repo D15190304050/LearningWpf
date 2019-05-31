@@ -31,8 +31,8 @@
                 <MenuItem FontSize="{Binding Path=UIFontSize}" FontFamily="{Binding Path=UIFontFamily}" Header="{x:Static properties:Resources.SaveAnnotation}" Command="ApplicationCommands.Save" />
                 <MenuItem FontSize="{Binding Path=UIFontSize}" FontFamily="{Binding Path=UIFontFamily}" Header="{x:Static properties:Resources.SaveAnnotatedImage}" Command="local:LabelCommands.SaveAnnotatedImage" />
                 <Separator />
-                <MenuItem FontSize="{Binding Path=UIFontSize}" FontFamily="{Binding Path=UIFontFamily}" Header="{x:Static properties:Resources.ResetCurrentImage}" />
-                <MenuItem FontSize="{Binding Path=UIFontSize}" FontFamily="{Binding Path=UIFontFamily}" Header="{x:Static properties:Resources.CloseImage}" />
+                <MenuItem FontSize="{Binding Path=UIFontSize}" FontFamily="{Binding Path=UIFontFamily}" Header="{x:Static properties:Resources.ResetCurrentImage}" Command="local:LabelCommands.ResetCurrentImage" />
+                <MenuItem FontSize="{Binding Path=UIFontSize}" FontFamily="{Binding Path=UIFontFamily}" Header="{x:Static properties:Resources.CloseImage}" Command="local:LabelCommands.CloseImage" />
                 <MenuItem FontSize="{Binding Path=UIFontSize}" FontFamily="{Binding Path=UIFontFamily}" Header="{x:Static properties:Resources.Close}" Command="ApplicationCommands.Close" />
             </MenuItem>
 

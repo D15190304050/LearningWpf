@@ -125,17 +125,13 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="TrajectoryData\Trajectory7.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    <Resource Include="TrajectoryData\Trajectory1.txt" />
+    <Resource Include="TrajectoryData\Trajectory2.txt" />
+    <Resource Include="TrajectoryData\Trajectory3.txt" />
+    <Resource Include="TrajectoryData\Trajectory4.txt" />
+    <Resource Include="BackgroundImages\0000000001.jpg" />
     <Resource Include="BackgroundImages\background.jpg" />
     <Content Include="BackgroundImages\Pictures420.jpg">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="TrajectoryData\Trajectory1.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="TrajectoryData\Trajectory6.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

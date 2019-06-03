@@ -65,7 +65,7 @@ namespace PixelTrajectoryAnnotator
             }
         }
 
-        public void Draw(Canvas canvas, double horizontalLength, double verticalLength, double pixelWidth, double pixelHeight)
+        public void Draw(Canvas canvas, double canvasWidth, double canvasHeight, double backgroundPixelWidth, double backgroundPixelHeight)
         {
             if (points.Count == 0)
                 return;
@@ -85,8 +85,8 @@ namespace PixelTrajectoryAnnotator
                 PathFigure pathFigure = new PathFigure();
 
                 Point firstPoint = trajectorySegment.Points.First();
-                double firstPointX = firstPoint.X / pixelWidth * horizontalLength;
-                double firstPointY = firstPoint.Y / pixelHeight * verticalLength;
+                double firstPointX = firstPoint.X / backgroundPixelWidth * canvasWidth;
+                double firstPointY = firstPoint.Y / backgroundPixelHeight * canvasHeight;
 
                 Rectangle startPoint = new Rectangle { Width = 20, Height = 20, Fill = Brushes.BlueViolet };
                 Canvas.SetLeft(startPoint, firstPointX - 10);
@@ -95,8 +95,8 @@ namespace PixelTrajectoryAnnotator
 
                 Point lastPoint = trajectorySegment.Points.Last();
                 Ellipse endPoint = new Ellipse { Width = 20, Height = 20, Fill = Brushes.Orange };
-                Canvas.SetLeft(endPoint, lastPoint.X / pixelWidth * horizontalLength - 10);
-                Canvas.SetTop(endPoint, lastPoint.Y / pixelHeight * verticalLength - 10);
+                Canvas.SetLeft(endPoint, lastPoint.X / backgroundPixelWidth * canvasWidth - 10);
+                Canvas.SetTop(endPoint, lastPoint.Y / backgroundPixelHeight * canvasHeight - 10);
                 canvas.Children.Add(endPoint);
 
                 pathFigure.StartPoint = new Point(firstPointX, firstPointY);
@@ -106,7 +106,7 @@ namespace PixelTrajectoryAnnotator
                 {
                     LineSegment newSegment = new LineSegment
                     {
-                        Point = new Point(point.X / pixelWidth * horizontalLength, point.Y / pixelHeight * verticalLength)
+                        Point = new Point(point.X / backgroundPixelWidth * canvasWidth, point.Y / backgroundPixelHeight * canvasHeight)
                     };
                     pathSegmentCollection.Add(newSegment);
                 }
@@ -134,11 +134,11 @@ namespace PixelTrajectoryAnnotator
             TextBlock textTrajectoryId = new TextBlock
             {
                 Text = $"Trajectory ID: {this.TrajectoryId}",
-                Foreground = System.Windows.Media.Brushes.Red,
+                Foreground = Brushes.Red,
                 FontSize = 16
             };
-            Canvas.SetLeft(textTrajectoryId, points.First.Value.X / pixelWidth * horizontalLength + 10);
-            Canvas.SetTop(textTrajectoryId, points.First.Value.Y / pixelHeight * verticalLength + 10);
+            Canvas.SetLeft(textTrajectoryId, points.First.Value.X / backgroundPixelWidth * canvasWidth + 10);
+            Canvas.SetTop(textTrajectoryId, points.First.Value.Y / backgroundPixelHeight * canvasHeight + 10);
             canvas.Children.Add(textTrajectoryId);
         }
 

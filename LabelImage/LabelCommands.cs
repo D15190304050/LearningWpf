@@ -33,6 +33,8 @@ namespace LabelImage
             inputs = new InputGestureCollection();
             inputs.Add(new KeyGesture(Key.W, ModifierKeys.Control, "Ctrl+W"));
             CloseImage = new RoutedUICommand(Properties.Resources.CloseImage, "CloseImage", typeof(LabelCommands), inputs);
+
+            OpenDirectory = new RoutedUICommand(Properties.Resources.OpenDirectory, "OpenDirectory", typeof(LabelCommands));
         }
 
         public static RoutedUICommand ZoomIn { get; }
@@ -46,5 +48,7 @@ namespace LabelImage
 
         public static RoutedUICommand ResetCurrentImage { get; }
         public static RoutedUICommand CloseImage { get; }
+
+        public static RoutedUICommand OpenDirectory { get; }
     }
 }

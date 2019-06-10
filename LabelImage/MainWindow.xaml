@@ -19,8 +19,13 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
 
-        <Menu Grid.Row="0">
+        <Menu Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3">
             <MenuItem FontSize="{Binding Path=UIFontSize}" FontFamily="{Binding Path=UIFontFamily}" Header="{x:Static properties:Resources.File}">
                 <MenuItem FontSize="{Binding Path=UIFontSize}" FontFamily="{Binding Path=UIFontFamily}" Header="{x:Static properties:Resources.OpenImage}" Command="ApplicationCommands.Open" />
                 <MenuItem FontSize="{Binding Path=UIFontSize}" FontFamily="{Binding Path=UIFontFamily}" Header="{x:Static properties:Resources.OpenDirectory}" />
@@ -64,5 +69,19 @@
             </MenuItem>
         </Menu>
 
+        <StackPanel Grid.Row="1" Grid.Column="0">
+            <Button Command="ApplicationCommands.Open">
+                <StackPanel Orientation="Vertical">
+                    <Image Source="Resources/Images/open.png" />
+                    <TextBlock Text="{x:Static properties:Resources.Open}" />
+                </StackPanel>
+            </Button>
+            <Button Command="local:LabelCommands.OpenDirectory">
+                <StackPanel Orientation="Vertical">
+                    <Image Source="Resources/Images/open.png" />
+                    <TextBlock Text="{x:Static properties:Resources.OpenDirectory}" />
+                </StackPanel>
+            </Button>
+        </StackPanel>
     </Grid>
 </Window>
